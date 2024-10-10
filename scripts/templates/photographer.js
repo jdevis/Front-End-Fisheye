@@ -38,5 +38,5 @@ function photographerTemplate(data) {
 		appendChilds(article, { link, location, intro, dayPrice });
 		return article;
 	}
-	return { name, picture, getUserCardDOM };
+	return { getUserCardDOM };
 }
