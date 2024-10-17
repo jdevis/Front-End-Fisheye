@@ -1,6 +1,6 @@
+import { getJson } from "../utils/utils.js";
 async function getPhotographers() {
-	const response = await fetch("data/photographers.json");
-	const photographers = await response.json();
+	const photographers = await getJson();
 	return photographers;
 }
 
