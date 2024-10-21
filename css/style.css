@@ -12,6 +12,12 @@ header {
 	align-items: center;
 	height: 90px;
 }
+header,
+main,
+footer {
+	max-width: 1240px;
+	margin: auto;
+}
 
 h1 {
 	color: #901c1c;
