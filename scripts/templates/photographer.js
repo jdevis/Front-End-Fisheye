@@ -28,7 +28,7 @@ function createMedias(elm) {
 		return mediaType;
 	}
 }
-
+// header for photographer detail page
 function photographerPage(data) {
 	const { name, portrait, tagline, city, country } = data;
 	const picture = `assets/photographers/${portrait}`;
@@ -60,6 +60,7 @@ function photographerPage(data) {
 	}
 	return { getUserCardDOM };
 }
+// medias for photographer detail page
 function photographerMedias(data) {
 	const { likes, title } = data;
 	function getUserCardDOM() {
@@ -83,7 +84,7 @@ function photographerMedias(data) {
 	}
 	return { getUserCardDOM };
 }
-
+// construct photographers card for homepage
 function photographerTemplate(data) {
 	const { name, portrait, tagline, city, country, price, id } = data;
 	const picture = `assets/photographers/${portrait}`;

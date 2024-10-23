@@ -27,7 +27,7 @@ export async function getJson() {
 async function reponseStatus(url) {
 	try {
 		const reponse = await fetch(url);
-		console.log("réponse :" + reponse.status);
+		//console.log("réponse :" + reponse.status);
 		return reponse;
 	} catch (error) {
 		console.log("erreur : " + error);

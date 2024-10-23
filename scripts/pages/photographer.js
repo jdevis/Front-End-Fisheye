@@ -14,7 +14,7 @@ async function getPhotographerInfos(id) {
 	);
 	return { photographerCard, photographerMedias };
 }
-async function displayData(photographers, id) {
+async function displayData(photographers) {
 	const photographersHeader = document.querySelector(".photograph_header");
 	const photographersSection = document.querySelector(".photograph_medias");
 	photographers.photographerCard.forEach((photographer) => {
@@ -22,8 +22,13 @@ async function displayData(photographers, id) {
 		const userCardDOM = photographerModel.getUserCardDOM();
 		photographersHeader.appendChild(userCardDOM);
 	});
+	// const mediasSorted = sortedBy(photographers.photographerMedias);
+	// mediasSorted.forEach((photographer) => {
+	// 	const photographerModel = photographerMedias(photographer);
+	// 	const userCardDOM = photographerModel.getUserCardDOM();
+	// 	photographersSection.appendChild(userCardDOM);
+	// });
 	photographers.photographerMedias.forEach((photographer) => {
-		writeURL(photographer, id);
 		const photographerModel = photographerMedias(photographer);
 		const userCardDOM = photographerModel.getUserCardDOM();
 		photographersSection.appendChild(userCardDOM);
@@ -45,12 +50,40 @@ function createPhotographerBanner(data) {
 		photographerDayPrice,
 	});
 }
+function sortedBy(data) {
+	const defaultSorted = data.slice();
+	data = defaultSorted;
+	document.querySelector("#tri").addEventListener("change", function () {
+		if (this.value === "default") {
+			data = defaultSorted;
+		}
+		if (this.value === "popularity") {
+			const mediasSorted = data.slice().sort((a, b) => b.likes - a.likes);
+			data = mediasSorted;
+		}
+		if (this.value === "date") {
+			const mediasSorted = data
+				.slice()
+				.sort((a, b) => new Date(b.date) - new Date(a.date));
+			data = mediasSorted;
+		}
+		if (this.value === "title") {
+			const mediasSorted = data
+				.slice()
+				.sort((a, b) => a.title.localeCompare(b.title));
+			data = mediasSorted;
+		}
+		console.log(data);
+		return data;
+	});
+}
 async function init() {
 	let params = new URL(document.location).searchParams;
 	let id = parseInt(params.get("id"));
 
 	const photographerInfos = await getPhotographerInfos(id);
-	displayData(photographerInfos, id);
+	displayData(photographerInfos);
 	createPhotographerBanner(photographerInfos);
+	sortedBy(photographerInfos.photographerMedias);
 }
 init();
