@@ -1,18 +1,37 @@
+// set multiples attributes
 function setAttributes(el, attrs) {
 	for (var key in attrs) {
 		el.setAttribute(key, attrs[key]);
 	}
 }
-
+// write multiples elements
 function appendChilds(el, attrs) {
 	for (var key in attrs) {
 		el.appendChild(attrs[key]);
 	}
 }
-function photographerPage(data) {
-	const { name, portrait, tagline, city, country, price } = data;
-	const picture = `assets/photographers/${portrait}`;
+// create medias types
+function createMedias(elm) {
+	if (elm.image) {
+		const mediaType = document.createElement("img");
+		const picture = `assets/photographers/${elm.photographerId}/${elm.image}`;
+		setAttributes(mediaType, { src: picture, alt: elm.title });
+		return mediaType;
+	}
+	if (elm.video) {
+		const mediaType = document.createElement("video");
+		setAttributes(mediaType, { controls: true });
+		const source = document.createElement("source");
+		const picture = `assets/photographers/${elm.photographerId}/${elm.video}`;
+		setAttributes(source, { src: picture, type: "video/mp4" });
+		mediaType.appendChild(source);
+		return mediaType;
+	}
+}
 
+function photographerPage(data) {
+	const { name, portrait, tagline, city, country } = data;
+	const picture = `assets/photographers/${portrait}`;
 	function getUserCardDOM() {
 		const h2 = document.createElement("h2");
 		h2.textContent = name;
@@ -29,9 +48,6 @@ function photographerPage(data) {
 			class: "contact_button",
 			onClick: "displayModal()",
 		});
-		// const dayPrice = document.createElement("p");
-		// dayPrice.setAttribute("class", "price");
-		// dayPrice.textContent = price + "€/jour";
 		const img = document.createElement("img");
 		setAttributes(img, { src: picture, alt: "portrait de " + name });
 		const divimg = document.createElement("div");
@@ -44,24 +60,25 @@ function photographerPage(data) {
 	}
 	return { getUserCardDOM };
 }
-
 function photographerMedias(data) {
-	const { date, id, photographerId, image, likes, price, title } = data;
-	const picture = `assets/photographers/${photographerId}/${image}`;
+	const { likes, title } = data;
 	function getUserCardDOM() {
 		const article = document.createElement("article");
-		const img = document.createElement("img");
-		setAttributes(img, { src: picture, alt: title });
+		const mediaType = createMedias(data);
 		const link = document.createElement("a");
-		link.appendChild(img);
-		const mediaTitle = document.createElement("p");
-		mediaTitle.textContent = title;
-		mediaTitle.setAttribute("class", "title");
+		link.appendChild(mediaType);
 		setAttributes(link, { href: "#", title: "Ouverture du carousel" });
+		const heart = document.createElement("i");
+		heart.setAttribute("class", "fa-solid fa-heart");
 		const nbreLikes = document.createElement("span");
 		nbreLikes.textContent = likes;
 		setAttributes(nbreLikes, { class: "likes" });
-		appendChilds(article, { link, mediaTitle, nbreLikes });
+		nbreLikes.appendChild(heart);
+		const mediaTitle = document.createElement("p");
+		mediaTitle.textContent = title;
+		mediaTitle.setAttribute("class", "title");
+		mediaTitle.appendChild(nbreLikes);
+		appendChilds(article, { link, mediaTitle });
 		return article;
 	}
 	return { getUserCardDOM };

@@ -8,6 +8,10 @@
 			href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap"
 			rel="stylesheet"
 		/>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+		/>
 		<script type="module" src="scripts/pages/photographer.js"></script>
 		<title>Fisheye - photographe</title>
 	</head>
@@ -19,9 +23,16 @@
 		</header>
 		<main id="main">
 			<div class="photograph_header"></div>
-			<section class="photograph_medias">
-				<div class="filter"></div>
-			</section>
+			<div class="filter">
+				<label for="tri">Trier par : </label>
+				<select name="tri" id="tri">
+					<option value="popularity">Popularité</option>
+					<option value="popularity">Date</option>
+					<option value="popularity">Titre</option>
+				</select>
+			</div>
+			<section class="photograph_medias"></section>
+			<div class="sum_likes"></div>
 		</main>
 		<div id="contact_modal">
 			<div class="modal">

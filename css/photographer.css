@@ -57,7 +57,8 @@
 .photograph_medias article {
 	width: 300px;
 }
-.photograph_medias img {
+.photograph_medias img,
+.photograph_medias video {
 	width: 300px;
 	height: 300px;
 	object-fit: cover;
