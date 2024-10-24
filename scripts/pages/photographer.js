@@ -47,11 +47,9 @@ function createPhotographerBanner(data) {
 function sortedBy(data, elmId) {
 	const defaultSorted = data.slice();
 	data = defaultSorted;
-	console.log("dans sortedby");
 	document.querySelector("#tri").addEventListener("change", function () {
-		const container = document.querySelector(elmId);
-		console.log(container.childNodes);
-		container.childNodes.forEach((el) => el.remove());
+		const container = document.getElementById("bla"); // faire id propre
+		container.innerHTML = "";
 		if (this.value === "default") {
 			data = defaultSorted;
 		}
@@ -71,7 +69,7 @@ function sortedBy(data, elmId) {
 				.sort((a, b) => a.title.localeCompare(b.title));
 			data = mediasSorted;
 		}
-		//displayMedias(data, elmId);
+		displayMedias(data, elmId);
 	});
 }
 
