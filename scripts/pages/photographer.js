@@ -1,9 +1,4 @@
-import {
-	getJson,
-	writeURL,
-	getSumLikes,
-	getPhotographerPrice,
-} from "../utils/utils.js";
+import { getJson, getSumLikes, getPhotographerPrice } from "../utils/utils.js";
 async function getPhotographerInfos(id) {
 	const data = await getJson();
 	const photographerMedias = data.media.filter(
@@ -14,26 +9,24 @@ async function getPhotographerInfos(id) {
 	);
 	return { photographerCard, photographerMedias };
 }
-async function displayData(photographers) {
-	const photographersHeader = document.querySelector(".photograph_header");
-	const photographersSection = document.querySelector(".photograph_medias");
-	photographers.photographerCard.forEach((photographer) => {
-		const photographerModel = photographerPage(photographer);
+async function displayCard(data, elmId) {
+	const container = document.querySelector(elmId);
+	data.forEach((element) => {
+		const photographerModel = photographerPage(element);
 		const userCardDOM = photographerModel.getUserCardDOM();
-		photographersHeader.appendChild(userCardDOM);
-	});
-	// const mediasSorted = sortedBy(photographers.photographerMedias);
-	// mediasSorted.forEach((photographer) => {
-	// 	const photographerModel = photographerMedias(photographer);
-	// 	const userCardDOM = photographerModel.getUserCardDOM();
-	// 	photographersSection.appendChild(userCardDOM);
-	// });
-	photographers.photographerMedias.forEach((photographer) => {
-		const photographerModel = photographerMedias(photographer);
-		const userCardDOM = photographerModel.getUserCardDOM();
-		photographersSection.appendChild(userCardDOM);
+		container.appendChild(userCardDOM);
 	});
 }
+async function displayMedias(data, elmId) {
+	const container = document.querySelector(elmId);
+	console.log("dans displaymedias");
+	data.forEach((element) => {
+		const photographerModel = photographerMedias(element);
+		const userCardDOM = photographerModel.getUserCardDOM();
+		container.appendChild(userCardDOM);
+	});
+}
+
 function createPhotographerBanner(data) {
 	const photographerBanner = document.querySelector(".sum_likes");
 	const heart = document.createElement("i");
@@ -50,10 +43,15 @@ function createPhotographerBanner(data) {
 		photographerDayPrice,
 	});
 }
-function sortedBy(data) {
+
+function sortedBy(data, elmId) {
 	const defaultSorted = data.slice();
 	data = defaultSorted;
+	console.log("dans sortedby");
 	document.querySelector("#tri").addEventListener("change", function () {
+		const container = document.querySelector(elmId);
+		console.log(container.childNodes);
+		container.childNodes.forEach((el) => el.remove());
 		if (this.value === "default") {
 			data = defaultSorted;
 		}
@@ -73,17 +71,18 @@ function sortedBy(data) {
 				.sort((a, b) => a.title.localeCompare(b.title));
 			data = mediasSorted;
 		}
-		console.log(data);
-		return data;
+		//displayMedias(data, elmId);
 	});
 }
+
 async function init() {
 	let params = new URL(document.location).searchParams;
 	let id = parseInt(params.get("id"));
 
 	const photographerInfos = await getPhotographerInfos(id);
-	displayData(photographerInfos);
+	displayCard(photographerInfos.photographerCard, ".photograph_header");
+	displayMedias(photographerInfos.photographerMedias, ".photograph_medias");
 	createPhotographerBanner(photographerInfos);
-	sortedBy(photographerInfos.photographerMedias);
+	sortedBy(photographerInfos.photographerMedias, ".photograph_medias");
 }
 init();
