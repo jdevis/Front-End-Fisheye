@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<link href="css/style.css" rel="stylesheet" type="text/css" />
+		<link href="css/photographer.css" rel="stylesheet" type="text/css" />
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/png" href="assets/favicon.png" />
 		<link
@@ -25,12 +25,14 @@
 			<div class="photograph_header"></div>
 			<div class="filter">
 				<label for="tri">Trier par : </label>
-				<select name="tri" id="tri">
-					<option value="default">Défaut</option>
-					<option value="popularity">Popularité</option>
-					<option value="date">Date</option>
-					<option value="title">Titre</option>
-				</select>
+				<div class="select_wrapper">
+					<select name="tri" id="tri">
+						<option value="default">Défaut</option>
+						<option value="popularity">Popularité</option>
+						<option value="date">Date</option>
+						<option value="title">Titre</option>
+					</select>
+				</div>
 			</div>
 			<section class="photograph_medias" id="bla"></section>
 			<div class="sum_likes"></div>

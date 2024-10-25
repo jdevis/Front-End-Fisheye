@@ -1,12 +1,16 @@
+@import url("style.css");
+
 #contact_modal {
 	display: none;
 }
-
+.logo {
+	margin-left: 0;
+}
 .photograph_header {
-	background-color: #fafafa;
-	height: 300px;
-	margin: 0 100px;
-	padding: 1em;
+	background-color: var(--second-secondary-color);
+	margin: 0 auto 1em;
+	padding: 2em;
+	width: 100%;
 }
 .photograph_header .intro {
 	display: flex;
@@ -15,40 +19,64 @@
 	align-items: center;
 }
 .photograph_header h2 {
-	color: #d3573c;
-	font-size: 36px;
+	color: var(--second-main-color);
 	margin: 0;
+	font-size: 64px;
 }
 .photograph_header p {
-	margin: 0;
+	margin: 1em 0;
 	padding: 0;
-	font-size: 11px;
+	font-size: 18px;
 }
 .photograph_header p.location {
-	color: #901c1c;
-	font-size: 13px;
+	color: var(--first-main-color);
+	font-size: 24px;
 }
 .photograph_header p.price {
-	color: #757575;
+	color: var(--second-secondary-color);
 }
 
-.photograph_header .portrait {
-	height: 200px;
-	width: 200px;
-	border-radius: 5em;
-	overflow: hidden;
-}
 .photograph_header .portrait img {
 	object-fit: cover;
 	width: 100%;
 	height: 100%;
 }
-
-.photograph_medias {
-	padding: 0;
+.filter {
+	margin: 1em 0;
+	font-weight: bold;
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: space-between;
+	align-items: center;
+}
+.filter label {
+	margin-right: 1em;
+}
+.filter .select_wrapper {
+	background-color: var(--first-main-color);
+	padding: 0.25em;
+	border-radius: 0.25em;
+}
+.filter select {
+	background-color: var(--first-main-color);
+	color: var(--first-secondary-color);
+	border-color: var(--first-main-color);
+	border-radius: 0.25em;
+	padding: 0.5em;
+	display: block;
+	margin: 0;
+	box-sizing: border-box;
+	width: 100%;
+}
+.filter option {
+	background-color: var(--first-main-color);
+	border-bottom: 1px solid var(--first-secondary-color);
+	padding: 1em;
+}
+.photograph_medias {
+	padding: 0;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	gap: 0 16%;
 }
 .photograph_medias .filter {
 	display: block;
@@ -62,23 +90,34 @@
 	width: 300px;
 	height: 300px;
 	object-fit: cover;
+	border-radius: 0.25em;
 }
 .contact_button {
 	font-size: 20px;
 	font-weight: bold;
-	color: white;
-	padding: 11px;
-	width: 170px;
-	height: 70px;
-	border: none;
-	background-color: #901c1c;
+	color: var(--first-secondary-color);
+	padding: 1em 0.5em;
+	text-align: center;
+	background-color: var(--first-main-color);
 	border-radius: 5px;
 	cursor: pointer;
 }
-
+.sum_likes {
+	background-color: var(--second-main-color);
+	position: fixed;
+	right: 12%;
+	bottom: 0;
+	padding: 1em;
+	width: 10%;
+	display: flex;
+	justify-content: space-between;
+}
+.sum_likes i {
+	margin-left: 10px;
+}
 .modal {
 	border-radius: 5px;
-	background-color: #db8876;
+	background-color: var(--second-main-color);
 	width: 50%;
 	display: flex;
 	flex-direction: column;
@@ -86,6 +125,7 @@
 	justify-content: space-between;
 	padding: 35px;
 	margin: auto;
+	box-shadow: -5px 10px 30px 0px #00000040;
 }
 
 .modal header {
