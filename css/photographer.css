@@ -76,18 +76,18 @@
 	padding: 0;
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
-	gap: 0 16%;
+	gap: 0 8em;
 }
 .photograph_medias .filter {
 	display: block;
 	margin: 1em 0;
 }
 .photograph_medias article {
-	width: 300px;
+	width: 350px;
 }
 .photograph_medias img,
 .photograph_medias video {
-	width: 300px;
+	width: 350px;
 	height: 300px;
 	object-fit: cover;
 	border-radius: 0.25em;
@@ -111,6 +111,7 @@
 	width: 10%;
 	display: flex;
 	justify-content: space-between;
+	font-weight: bold;
 }
 .sum_likes i {
 	margin-left: 10px;
