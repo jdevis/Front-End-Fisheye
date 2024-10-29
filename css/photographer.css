@@ -1,5 +1,7 @@
 @import url("style.css");
-
+i.fa-heart {
+	margin-left: 5px;
+}
 #contact_modal {
 	display: none;
 }
@@ -51,25 +53,16 @@
 .filter label {
 	margin-right: 1em;
 }
-.filter .select_wrapper {
-	background-color: var(--first-main-color);
-	padding: 0.25em;
-	border-radius: 0.25em;
-}
 .filter select {
 	background-color: var(--first-main-color);
 	color: var(--first-secondary-color);
-	border-color: var(--first-main-color);
 	border-radius: 0.25em;
 	padding: 0.5em;
-	display: block;
 	margin: 0;
-	box-sizing: border-box;
-	width: 100%;
+	width: 150px;
 }
 .filter option {
 	background-color: var(--first-main-color);
-	border-bottom: 1px solid var(--first-secondary-color);
 	padding: 1em;
 }
 .photograph_medias {
@@ -84,6 +77,7 @@
 }
 .photograph_medias article {
 	width: 350px;
+	margin-bottom: 1em;
 }
 .photograph_medias img,
 .photograph_medias video {
@@ -91,6 +85,15 @@
 	height: 300px;
 	object-fit: cover;
 	border-radius: 0.25em;
+}
+.photograph_medias .title {
+	color: var(--first-main-color);
+	font-size: 18px;
+	margin: 0;
+	padding: 0.5em 0;
+}
+.title .likes {
+	float: right;
 }
 .contact_button {
 	font-size: 20px;
@@ -112,9 +115,6 @@
 	display: flex;
 	justify-content: space-between;
 	font-weight: bold;
-}
-.sum_likes i {
-	margin-left: 10px;
 }
 .modal {
 	border-radius: 5px;
