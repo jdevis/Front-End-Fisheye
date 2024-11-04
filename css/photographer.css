@@ -139,9 +139,6 @@ i.fa-heart {
 .carousel #next {
 	right: 5px;
 }
-.carousel li {
-	list-style-type: none;
-}
 .carousel .slide {
 	position: absolute;
 	width: 100%;

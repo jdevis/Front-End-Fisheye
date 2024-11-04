@@ -102,11 +102,10 @@ function photographerTemplate(data) {
 	const { name, portrait, tagline, city, country, price, id } = data;
 	const picture = `assets/photographers/${portrait}`;
 	const href = `photographer.html?id=${id}`;
-
 	function getUserCardDOM() {
 		const article = document.createElement("article");
 		const img = document.createElement("img");
-		setAttributes(img, { src: picture, alt: "portrait de " + name });
+		setAttributes(img, { src: picture, alt: "" });
 		const div = document.createElement("div");
 		div.setAttribute("class", "portrait");
 		div.appendChild(img);
