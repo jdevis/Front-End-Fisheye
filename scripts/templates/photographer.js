@@ -10,11 +10,21 @@ function appendChilds(el, attrs) {
 		el.appendChild(attrs[key]);
 	}
 }
+async function reponseStatus(url) {
+	try {
+		const reponse = await fetch(url);
+		return reponse;
+	} catch (error) {
+		//console.log(error);
+	}
+}
 // create medias types
 function createMedias(elm) {
 	if (elm.image) {
 		const mediaType = document.createElement("img");
 		const picture = `assets/photographers/${elm.photographerId}/${elm.image}`;
+		const reponse = reponseStatus(picture);
+		console.log("reponse nok : " + !reponse);
 		setAttributes(mediaType, { src: picture, alt: elm.title });
 		return mediaType;
 	}
@@ -23,6 +33,8 @@ function createMedias(elm) {
 		setAttributes(mediaType, { controls: true });
 		const source = document.createElement("source");
 		const picture = `assets/photographers/${elm.photographerId}/${elm.video}`;
+		const reponse = reponseStatus(picture);
+		console.log("reponse : " + reponse);
 		setAttributes(source, { src: picture, type: "video/mp4" });
 		mediaType.appendChild(source);
 		return mediaType;
@@ -66,9 +78,10 @@ function photographerMedias(data) {
 	function getUserCardDOM() {
 		const article = document.createElement("article");
 		const mediaType = createMedias(data);
+		//console.log(mediaType);
 		const link = document.createElement("a");
 		link.appendChild(mediaType);
-		setAttributes(link, { href: "#", title: "Ouverture du carousel" });
+		setAttributes(link, { href: "#", title: "Ouverture du carrousel" });
 		const heart = document.createElement("i");
 		heart.setAttribute("class", "fa-solid fa-heart");
 		const nbreLikes = document.createElement("span");

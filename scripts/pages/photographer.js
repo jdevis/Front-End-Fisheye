@@ -7,6 +7,7 @@ async function getPhotographerInfos(id) {
 	const photographerCard = data.photographers.filter(
 		(element) => element.id === id
 	);
+	//console.log(photographerMedias);
 	return { photographerCard, photographerMedias };
 }
 async function displayCard(data, elmId) {
@@ -19,7 +20,6 @@ async function displayCard(data, elmId) {
 }
 async function displayMedias(data, elmId) {
 	const container = document.querySelector(elmId);
-	console.log("dans displaymedias");
 	data.forEach((element) => {
 		const photographerModel = photographerMedias(element);
 		const userCardDOM = photographerModel.getUserCardDOM();

@@ -20,17 +20,19 @@ export async function getJson() {
 		const data = await response.json();
 		return data;
 	} catch (error) {
-		console.log("erreur de chargement du JSON : " + error);
+		alert(
+			"Nous rencontrons des problèmes, nous vous prions de nous excuser pour la gène occasionnée. merci de revenir plus tard."
+		);
 	}
 }
 // catching 404
 async function reponseStatus(url) {
 	try {
 		const reponse = await fetch(url);
-		//console.log("réponse :" + reponse.status);
 		return reponse;
 	} catch (error) {
-		console.log("erreur : " + error);
+		console.log(error);
+		return error;
 	}
 }
 // media types url
