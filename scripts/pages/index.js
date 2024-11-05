@@ -1,25 +1,33 @@
-import { getJson } from "../utils/utils.js";
-async function getPhotographers() {
-	const photographers = await getJson();
-	return photographers;
+class Photographer {
+	constructor(photographers) {
+		this._name = photographers.name;
+		this._picture = photographers.portrait;
+		this._id = photographers.id;
+		this._city = photographers.city;
+		this._country = photographers.country;
+		this._price = photographers.price;
+		this._tagline = photographers.tagline;
+	}
+
+	get name() {
+		return this._name;
+	}
+	get picture() {
+		return `/assets/photographers/${this._picture}`;
+	}
+	get id() {
+		return this._id;
+	}
+	get city() {
+		return this._city;
+	}
+	get country() {
+		return this._country;
+	}
+	get price() {
+		return `${this._price}€/jour`;
+	}
+	get tagline() {
+		return this._tagline;
+	}
 }
-
-async function displayData(photographers) {
-	const photographersSection = document.querySelector(
-		".photographer_section"
-	);
-
-	photographers.forEach((photographer) => {
-		const photographerModel = photographerTemplate(photographer);
-		const userCardDOM = photographerModel.getUserCardDOM();
-		photographersSection.appendChild(userCardDOM);
-	});
-}
-
-async function init() {
-	// Récupère les datas des photographes
-	const { photographers } = await getPhotographers();
-	displayData(photographers);
-}
-
-init();

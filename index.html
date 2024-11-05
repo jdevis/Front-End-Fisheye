@@ -8,17 +8,26 @@
 			href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap"
 			rel="stylesheet"
 		/>
-		<script type="module" src="scripts/pages/index.js"></script>
 		<title>Fisheye</title>
 	</head>
 	<body>
 		<header>
-			<img src="assets/images/logo.png" class="logo" alt="fisheye logo" />
+			<img src="assets/images/logo.png" class="logo" alt="fisheye" />
 			<h1>Nos photographes</h1>
 		</header>
 		<main id="main">
-			<div class="photographer_section"></div>
+			<section class="photographer_section"></section>
 		</main>
-		<script src="scripts/templates/photographer.js"></script>
+		<!-- Models -->
+		<script src="/scripts/pages/index.js"></script>
+
+		<!-- Templates -->
+		<script src="/scripts/templates/photographerCard.js"></script>
+
+		<!-- Api -->
+		<script src="/scripts/utils/Api.js"></script>
+
+		<!-- Entry point -->
+		<script src="/scripts/App.js"></script>
 	</body>
 </html>
