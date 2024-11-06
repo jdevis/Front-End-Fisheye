@@ -48,7 +48,7 @@ function sortedBy(data, elmId) {
 	const defaultSorted = data.slice();
 	data = defaultSorted;
 	document.querySelector("#tri").addEventListener("change", function () {
-		const container = document.getElementById("bla"); // faire id propre
+		const container = document.getElementById("medias_list"); // faire id propre
 		container.innerHTML = "";
 		if (this.value === "default") {
 			data = defaultSorted;

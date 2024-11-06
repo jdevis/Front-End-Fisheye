@@ -38,6 +38,10 @@ ul,
 li {
 	list-style: none;
 }
+select {
+	border: none;
+	outline: none;
+}
 .logo {
 	height: 50px;
 }
