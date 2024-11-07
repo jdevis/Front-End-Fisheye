@@ -6,6 +6,8 @@ class App {
 		this.$mediasWrapper = document.querySelector(".photograph_medias");
 		this.$introWrapper = document.querySelector(".photograph_header");
 		this.$sliderWrapper = document.getElementById("medias_slider");
+		this.$sumLikesWrapper = document.getElementById("sumLikes");
+		this.$dayPriceWrapper = document.getElementById("dayPrice");
 
 		this.photographersApi = new PhotographerApi("/data/photographers.json");
 		this.mediasApi = new MediaApi("/data/photographers.json");
@@ -18,7 +20,6 @@ class App {
 
 		// id doesn't exist so we're on homepage
 		if (!id) {
-			console.log("pas d'id dans url");
 			// Retrieve photographers from JSON
 			const photographersData = await this.photographersApi.getPhotographers();
 
@@ -31,13 +32,16 @@ class App {
 						Template.createPhotographerCard()
 					);
 				});
-		} else {
+		} else if (id) {
 			// id exist so we're on photographer detail page
-			console.log(id);
 			const media = await this.mediasApi.getMedias();
 			const photographerMedias = media.filter(
 				(element) => element.photographerId === id
 			);
+
+			const sumLikes = getSumLikes(photographerMedias);
+			this.$sumLikesWrapper.innerHTML = sumLikes;
+
 			photographerMedias
 				.map((media) => new MediasFactory(media))
 				.forEach((media) => {
@@ -51,11 +55,17 @@ class App {
 			const photographerIntro = intro.filter(
 				(element) => element.id === id
 			);
-			console.log(photographerIntro);
-			// getter c'est photographer dans index.js refacto cela
-			// this.$introWrapper.appendChild(
-			// 	photographerIntro.createPhotographerIntro()
-			// );
+			const dayPrice = getPhotographerPrice(photographerIntro);
+			this.$dayPriceWrapper.innerHTML = dayPrice;
+
+			photographerIntro
+				.map((photographer) => new Photographer(photographer))
+				.forEach((photographer) => {
+					const Template = new PhotographerIntro(photographer);
+					this.$introWrapper.appendChild(
+						Template.createPhotographerIntro()
+					);
+				});
 		}
 	}
 }

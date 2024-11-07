@@ -33,8 +33,10 @@
 			</div>
 			<section class="photograph_medias" id="medias_list"></section>
 			<div class="sum_likes">
-				<span class="likes"><i class="fa-solid fa-heart"></i></span>
-				<span class="price"></span>
+				<span class="likes" id="sumLikes"
+					><i class="fa-solid fa-heart"></i
+				></span>
+				<span class="price" id="dayPrice"></span>
 			</div>
 		</main>
 		<div class="carousel">
@@ -68,6 +70,7 @@
 		<script src="/scripts/factories/MediasFactory.js"></script>
 		<script src="/scripts/pages/imageMedia.js"></script>
 		<script src="/scripts/pages/videoMedia.js"></script>
+		<script src="/scripts/pages/index.js"></script>
 
 		<!-- Templates -->
 		<script src="/scripts/templates/photographerIntro.js"></script>
@@ -75,6 +78,10 @@
 
 		<!-- Api -->
 		<script src="/scripts/utils/Api.js"></script>
+
+		<!-- utils -->
+		<script src="/scripts/utils/slider.js"></script>
+		<script src="/scripts/utils/utils.js"></script>
 
 		<!-- Entry point -->
 		<script src="/scripts/App.js"></script>

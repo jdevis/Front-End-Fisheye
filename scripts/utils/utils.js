@@ -1,50 +1,57 @@
 // sum of likes for all photographer medias
-export function getSumLikes(data) {
+function getSumLikes(data) {
 	let sumLikes = 0;
-	data.photographerMedias.forEach((element) => {
+	data.forEach((element) => {
 		sumLikes += element.likes;
 	});
-	return sumLikes;
+	return sumLikes + ` <i class="fa-solid fa-heart"></i>`;
 }
-export function getPhotographerPrice(data) {
+
+function getPhotographerPrice(data) {
 	let price = 0;
-	data.photographerCard.forEach((element) => {
+	data.forEach((element) => {
 		price = element.price;
 	});
-	return price;
+	return price + `€/jour`;
 }
-// getting the JSON data
-export async function getJson() {
-	try {
-		const response = await fetch("data/photographers.json");
-		const data = await response.json();
+
+function sortedBy(data) {
+	const defaultSorted = data.slice();
+	data = defaultSorted;
+	document.querySelector("#tri").addEventListener("change", function () {
+		const container = document.getElementById("medias_list");
+		container.innerHTML = "";
+		if (this.value === "default") {
+			data = defaultSorted;
+		}
+		if (this.value === "popularity") {
+			const mediasSorted = data.slice().sort((a, b) => b.likes - a.likes);
+			data = mediasSorted;
+		}
+		if (this.value === "date") {
+			const mediasSorted = data
+				.slice()
+				.sort((a, b) => new Date(b.date) - new Date(a.date));
+			data = mediasSorted;
+		}
+		if (this.value === "title") {
+			const mediasSorted = data
+				.slice()
+				.sort((a, b) => a.title.localeCompare(b.title));
+			data = mediasSorted;
+		}
 		return data;
-	} catch (error) {
-		alert(
-			"Nous rencontrons des problèmes, nous vous prions de nous excuser pour la gène occasionnée. merci de revenir plus tard."
-		);
+	});
+}
+
+function setAttributes(el, attrs) {
+	for (var key in attrs) {
+		el.setAttribute(key, attrs[key]);
 	}
 }
-// catching 404
-async function reponseStatus(url) {
-	try {
-		const reponse = await fetch(url);
-		return reponse;
-	} catch (error) {
-		console.log(error);
-		return error;
+
+function appendChilds(el, attrs) {
+	for (var key in attrs) {
+		el.appendChild(attrs[key]);
 	}
-}
-// media types url
-export async function writeURL(medias, id) {
-	let url;
-	if (medias.image) {
-		url = `assets/photographers/${id}/${medias.image}`;
-		reponseStatus(url);
-	}
-	if (medias.video) {
-		url = `assets/photographers/${id}/${medias.video}`;
-		reponseStatus(url);
-	}
-	return url;
 }
