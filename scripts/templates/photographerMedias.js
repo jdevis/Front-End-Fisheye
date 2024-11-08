@@ -7,7 +7,7 @@ class MediaCard {
 		const $wrapper = document.createElement("article");
 
 		const mediaCard = `
-            <a href="#" title="Ouverture du carrousel" id="${this._media.id}">
+            <a href="#" title="Ouverture du carrousel" class="open">
                 ${this._media.picture}
             </a>
             <p class="title">${this._media.title}

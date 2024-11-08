@@ -30,7 +30,7 @@ class VideoMedia {
 		return this._date;
 	}
 	get price() {
-		return this._price;
+		return this._price + `€`;
 	}
 	get title() {
 		return this._title;

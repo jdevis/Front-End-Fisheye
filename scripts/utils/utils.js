@@ -16,6 +16,10 @@ function getPhotographerPrice(data) {
 }
 
 function sortedBy(data) {
+	console.log("dans sortedBy");
+	const mediasWrapper = document.querySelector(".photograph_medias");
+	const sliderWrapper = document.getElementById("medias_slider");
+
 	const defaultSorted = data.slice();
 	data = defaultSorted;
 	document.querySelector("#tri").addEventListener("change", function () {
@@ -40,6 +44,14 @@ function sortedBy(data) {
 				.sort((a, b) => a.title.localeCompare(b.title));
 			data = mediasSorted;
 		}
+		data.map((media) => new MediasFactory(media)).forEach((media) => {
+			const Template = new MediaCard(media);
+			mediasWrapper.appendChild(Template.createMediaCard());
+			const Slider = new MediaCard(media);
+			sliderWrapper.appendChild(Slider.createMediaSlider());
+		});
+		console.log(data);
+		slider();
 		return data;
 	});
 }
