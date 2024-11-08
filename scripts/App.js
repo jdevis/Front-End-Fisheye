@@ -65,6 +65,17 @@ class App {
 					this.$introWrapper.appendChild(
 						Template.createPhotographerIntro()
 					);
+					const buttons = document.querySelectorAll(
+						".contact_button"
+					);
+					buttons.forEach((button) => {
+						button.addEventListener("click", (e) => {
+							if (e.target.id === "closeModal")
+								closeModal("contact_modal");
+							if (e.target.id === "openModal")
+								displayModal("contact_modal");
+						});
+					});
 				});
 			sortedBy(photographerMedias);
 		}

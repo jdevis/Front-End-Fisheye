@@ -2,8 +2,15 @@
 i.fa-heart {
 	margin-left: 5px;
 }
-#contact_modal {
+#contact_modal,
+#lightbox {
 	display: none;
+	position: absolute;
+	width: 100vw;
+	height: 100vh;
+	top: 0;
+	background: rgb(0, 0, 0, 0.75);
+	padding: 2em;
 }
 .logo {
 	margin-left: 0;

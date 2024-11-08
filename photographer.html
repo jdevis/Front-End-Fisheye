@@ -39,7 +39,8 @@
 				<span class="price" id="dayPrice"></span>
 			</div>
 		</main>
-		<div class="carousel">
+		<div class="carousel" id="lightbox">
+			<button class="btn" id="close">X</button>
 			<button class="btn" id="prev">&#10096;</button>
 			<button class="btn" id="next">&#10097;</button>
 			<ul id="medias_slider"></ul>
@@ -48,7 +49,7 @@
 			<div class="modal">
 				<header>
 					<h2>Contactez-moi</h2>
-					<img src="assets/icons/close.svg" onclick="closeModal()" />
+					<button class="contact_button" id="closeModal">X</button>
 				</header>
 				<form>
 					<div>
@@ -80,7 +81,7 @@
 		<script src="/scripts/App.js"></script>
 		<script>
 			//setTimeout(sortedBy, 100);
-			//setTimeout(slider, 100);
+			setTimeout(slider, 100);
 		</script>
 	</body>
 </html>

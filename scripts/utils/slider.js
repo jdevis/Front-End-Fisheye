@@ -1,15 +1,25 @@
+function displayModal(id) {
+	const modal = document.getElementById(id);
+	modal.style.display = "block";
+}
+
+function closeModal(id) {
+	const modal = document.getElementById(id);
+	modal.style.display = "none";
+}
+
 function slider() {
 	const buttons = document.querySelectorAll(".btn");
 	const slides = document.querySelectorAll(".slide");
 	const medias = document.querySelectorAll(".open");
-	console.log("dans slider");
-	console.log(medias);
 	medias.forEach((media) => {
 		media.addEventListener("click", () => {
+			displayModal("lightbox");
 			mediaIndex = [...medias].indexOf(media);
 			slides[mediaIndex].classList.add("active");
 			buttons.forEach((button) => {
 				button.addEventListener("click", (e) => {
+					if (e.target.id === "close") closeModal("lightbox");
 					const calcMoveIndex = e.target.id === "next" ? 1 : -1;
 					const slideActive = document.querySelector(".active");
 
