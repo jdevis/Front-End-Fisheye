@@ -6,6 +6,10 @@ function getSumLikes(data) {
 	});
 	return sumLikes + ` <i class="fa-solid fa-heart"></i>`;
 }
+// localStorage for likes
+function saveData(data) {
+	localStorage.setItem("nom", "jojo");
+}
 
 function getPhotographerPrice(data) {
 	let price = 0;

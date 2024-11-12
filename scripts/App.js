@@ -65,19 +65,22 @@ class App {
 					this.$introWrapper.appendChild(
 						Template.createPhotographerIntro()
 					);
+					Template.displayPhotographerName();
 					const buttons = document.querySelectorAll(
 						".contact_button"
 					);
 					buttons.forEach((button) => {
 						button.addEventListener("click", (e) => {
 							if (e.target.id === "closeModal")
-								closeModal("contact_modal");
+								closeModal("contactModal");
 							if (e.target.id === "openModal")
-								displayModal("contact_modal");
+								displayModal("contactModal");
 						});
 					});
 				});
 			sortedBy(photographerMedias);
+			submitForm();
+			saveData();
 		}
 	}
 }

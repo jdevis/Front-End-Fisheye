@@ -33,3 +33,17 @@ function slider() {
 		});
 	});
 }
+function submitForm() {
+	document.getElementById("contactForm").addEventListener("submit", (e) => {
+		e.preventDefault();
+		const firstName = document.getElementById("firstName");
+		const lastName = document.getElementById("lastName");
+		const email = document.getElementById("email");
+		const message = document.getElementById("message");
+
+		console.log("Prénom : " + firstName.value);
+		console.log("Nom : " + lastName.value);
+		console.log("Email : " + email.value);
+		console.log("Message : " + message.value);
+	});
+}

@@ -7,7 +7,7 @@ class MediaCard {
 		const $wrapper = document.createElement("article");
 
 		const mediaCard = `
-            <a href="#" title="Ouverture du carrousel" class="open">
+            <a href="#" title="Ouverture du carrousel" class="open" aria-label="image closeup view">
                 ${this._media.picture}
             </a>
             <p class="title">${this._media.title}
@@ -25,7 +25,7 @@ class MediaCard {
 		const $wrapper = document.createElement("li");
 		$wrapper.classList.add("slide");
 
-		const mediaSlide = this._media.picture;
+		const mediaSlide = `${this._media.picture}<p class="title">${this._media.title}</p>`;
 		$wrapper.innerHTML = mediaSlide;
 		return $wrapper;
 	}

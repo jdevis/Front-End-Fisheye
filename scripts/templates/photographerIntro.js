@@ -23,4 +23,11 @@ class PhotographerIntro {
 		$wrapper.innerHTML = photographerIntro;
 		return $wrapper;
 	}
+
+	displayPhotographerName() {
+		const $wrapper = document.querySelector(".modal h2");
+		const photographerContact = `Contactez-moi <br/>${this._photographer.name}`;
+		$wrapper.innerHTML = photographerContact;
+		return $wrapper;
+	}
 }

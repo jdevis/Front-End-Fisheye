@@ -40,23 +40,41 @@
 			</div>
 		</main>
 		<div class="carousel" id="lightbox">
-			<button class="btn" id="close">X</button>
-			<button class="btn" id="prev">&#10096;</button>
-			<button class="btn" id="next">&#10097;</button>
+			<button class="btn" id="close" aria-label="Close dialog">X</button>
+			<button class="btn" id="prev" aria-label="Previous image">
+				&#10096;
+			</button>
+			<button class="btn" id="next" aria-label="Next image">
+				&#10097;
+			</button>
 			<ul id="medias_slider"></ul>
 		</div>
-		<div id="contact_modal">
+		<div class="contact" id="contactModal">
 			<div class="modal">
 				<header>
 					<h2>Contactez-moi</h2>
-					<button class="contact_button" id="closeModal">X</button>
+					<button
+						class="contact_button"
+						id="closeModal"
+						aria-label="Close dialog"
+					>
+						X
+					</button>
 				</header>
-				<form>
+				<form action="" method="post" id="contactForm">
 					<div>
-						<label>Prénom</label>
-						<input />
+						<label for="firstName">Prénom</label>
+						<input type="text" id="firstName" name="firstName" />
+						<label for="lastName">Nom</label>
+						<input type="text" id="lastName" name="lastName" />
+						<label for="email">Email</label>
+						<input type="email" id="email" name="email" />
+						<label for="message">Votre message</label>
+						<textarea id="message" name="message"></textarea>
 					</div>
-					<button class="contact_button">Envoyer</button>
+					<button type="submit" name="submit" class="contact_button">
+						Envoyer
+					</button>
 				</form>
 			</div>
 		</div>
