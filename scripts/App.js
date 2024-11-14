@@ -33,12 +33,16 @@ class App {
 				});
 		} else if (id) {
 			// id exist so we're on photographer detail page
-			const media = await this.mediasApi.getMedias();
-			const photographerMedias = media.filter(
+			const medias = await this.mediasApi.getMedias();
+			const photographerMedias = medias.filter(
 				(element) => element.photographerId === id
 			);
-
-			photographerMedias
+			saveMediasLS(photographerMedias);
+			const mediasLS = getMediasLS(id);
+			// console.log(photographerMedias);
+			// console.log("-----------");
+			// console.log(mediasLS);
+			mediasLS
 				.map((media) => new MediasFactory(media))
 				.forEach((media) => {
 					const Template = new MediaCard(media);
@@ -46,6 +50,15 @@ class App {
 					const Slider = new MediaCard(media);
 					this.$sliderWrapper.appendChild(Slider.createMediaSlider());
 				});
+			const likes = document.querySelectorAll(
+				".photograph_medias i.fa-heart"
+			);
+			likes.forEach((like) => {
+				like.addEventListener("click", (e) => {
+					const newLikes = addLike(e.target.id, id);
+					e.target.parentNode.innerHTML = `${newLikes}<i class="fa-solid fa-heart" id="${e.target.id}"></i>`;
+				});
+			});
 
 			const intro = await this.photographersApi.getPhotographers();
 			const photographerIntro = intro.filter(
@@ -74,9 +87,9 @@ class App {
 						});
 					});
 				});
-			displaySumLikes(photographerMedias);
-			sortedBy(photographerMedias);
-			saveMediasLS(photographerMedias);
+			displaySumLikes(mediasLS);
+			sortedBy(mediasLS);
+			//saveMediasLS(photographerMedias);
 			submitForm();
 		}
 	}

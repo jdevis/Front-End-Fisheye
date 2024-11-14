@@ -28,6 +28,7 @@ function saveMediasLS(data) {
 		localStorage.removeItem(photographerId);
 	}
 	localStorage.setItem(photographerId, JSON.stringify(data));
+	return JSON.stringify(data);
 }
 
 function getMediasLS(key) {
@@ -43,6 +44,7 @@ function addLike(id, key) {
 	foundMedia.likes = likes;
 	saveMediasLS(medias);
 	displaySumLikes(medias);
+	return likes;
 }
 
 function getPhotographerPrice(data) {
