@@ -6,9 +6,43 @@ function getSumLikes(data) {
 	});
 	return sumLikes + ` <i class="fa-solid fa-heart"></i>`;
 }
-// localStorage for likes
-function saveData(data) {
-	localStorage.setItem("nom", "jojo");
+function displaySumLikes(data) {
+	const sumLikesWrapper = document.getElementById("sumLikes");
+	const sumLikes = getSumLikes(data);
+	sumLikesWrapper.innerHTML = "";
+	sumLikesWrapper.innerHTML = sumLikes;
+}
+
+function displaylikes(id) {
+	const wrapper = element;
+}
+
+// localStorage for medias
+function saveMediasLS(data) {
+	let photographerId = 0;
+	data.forEach((pId) => {
+		photographerId = pId.photographerId;
+	});
+	let keyExist = getMediasLS(photographerId);
+	if (keyExist) {
+		localStorage.removeItem(photographerId);
+	}
+	localStorage.setItem(photographerId, JSON.stringify(data));
+}
+
+function getMediasLS(key) {
+	let medias = localStorage.getItem(key);
+	return JSON.parse(medias);
+}
+
+function addLike(id, key) {
+	let medias = getMediasLS(key);
+	let foundMedia = medias.find((m) => m.id == id);
+	let likes = foundMedia.likes;
+	likes++;
+	foundMedia.likes = likes;
+	saveMediasLS(medias);
+	displaySumLikes(medias);
 }
 
 function getPhotographerPrice(data) {

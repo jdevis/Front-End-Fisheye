@@ -7,16 +7,9 @@ class Api {
 		this._url = url;
 	}
 
-	async getC() {
+	async get() {
 		return fetch(this._url)
 			.then((res) => res.json())
-			.then((res) => res.photographers)
-			.catch((err) => console.log("an error occurs", err));
-	}
-	async getM() {
-		return fetch(this._url)
-			.then((res) => res.json())
-			.then((res) => res.media)
 			.catch((err) => console.log("an error occurs", err));
 	}
 }
@@ -31,7 +24,7 @@ class PhotographerApi extends Api {
 	}
 
 	async getPhotographers() {
-		return await this.getC();
+		return await this.get().then((res) => res.photographers);
 	}
 }
 class MediaApi extends Api {
@@ -44,6 +37,6 @@ class MediaApi extends Api {
 	}
 
 	async getMedias() {
-		return await this.getM();
+		return await this.get().then((res) => res.media);
 	}
 }

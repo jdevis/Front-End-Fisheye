@@ -6,7 +6,6 @@ class App {
 		this.$mediasWrapper = document.querySelector(".photograph_medias");
 		this.$introWrapper = document.querySelector(".photograph_header");
 		this.$sliderWrapper = document.getElementById("medias_slider");
-		this.$sumLikesWrapper = document.getElementById("sumLikes");
 		this.$dayPriceWrapper = document.getElementById("dayPrice");
 
 		this.photographersApi = new PhotographerApi("/data/photographers.json");
@@ -38,9 +37,6 @@ class App {
 			const photographerMedias = media.filter(
 				(element) => element.photographerId === id
 			);
-
-			const sumLikes = getSumLikes(photographerMedias);
-			this.$sumLikesWrapper.innerHTML = sumLikes;
 
 			photographerMedias
 				.map((media) => new MediasFactory(media))
@@ -78,9 +74,10 @@ class App {
 						});
 					});
 				});
+			displaySumLikes(photographerMedias);
 			sortedBy(photographerMedias);
+			saveMediasLS(photographerMedias);
 			submitForm();
-			saveData();
 		}
 	}
 }

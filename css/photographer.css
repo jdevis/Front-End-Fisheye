@@ -1,6 +1,7 @@
 @import url("style.css");
 i.fa-heart {
 	margin-left: 5px;
+	cursor: pointer;
 }
 .logo {
 	margin-left: 0;

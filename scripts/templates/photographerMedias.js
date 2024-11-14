@@ -12,7 +12,7 @@ class MediaCard {
             </a>
             <p class="title">${this._media.title}
                 <span class="likes">
-                    ${this._media.likes}<i class="fa-solid fa-heart"></i>
+                    ${this._media.likes}<i class="fa-solid fa-heart" id="${this._media.id}"></i>
                 </span>
             </p>    
         `;
