@@ -50,15 +50,6 @@ class App {
 					const Slider = new MediaCard(media);
 					this.$sliderWrapper.appendChild(Slider.createMediaSlider());
 				});
-			const likes = document.querySelectorAll(
-				".photograph_medias i.fa-heart"
-			);
-			likes.forEach((like) => {
-				like.addEventListener("click", (e) => {
-					const newLikes = addLike(e.target.id, id);
-					e.target.parentNode.innerHTML = `${newLikes}<i class="fa-solid fa-heart" id="${e.target.id}"></i>`;
-				});
-			});
 
 			const intro = await this.photographersApi.getPhotographers();
 			const photographerIntro = intro.filter(
@@ -88,7 +79,8 @@ class App {
 					});
 				});
 			displaySumLikes(mediasLS);
-			sortedBy(mediasLS);
+			displaylikes(id);
+			sortedBy(id);
 			//saveMediasLS(photographerMedias);
 			submitForm();
 		}

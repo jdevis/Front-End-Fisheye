@@ -14,7 +14,13 @@ function displaySumLikes(data) {
 }
 
 function displaylikes(id) {
-	const wrapper = element;
+	const likes = document.querySelectorAll(".photograph_medias i.fa-heart");
+	likes.forEach((like) => {
+		like.addEventListener("click", (e) => {
+			const newLikes = addLike(e.target.id, id);
+			e.target.parentNode.innerHTML = `${newLikes}<i class="fa-solid fa-heart" id="${e.target.id}"></i>`;
+		});
+	});
 }
 
 // localStorage for medias
@@ -55,13 +61,13 @@ function getPhotographerPrice(data) {
 	return price + `€/jour`;
 }
 
-function sortedBy(data) {
+function sortedBy(key) {
 	const mediasWrapper = document.querySelector(".photograph_medias");
 	const sliderWrapper = document.getElementById("medias_slider");
-
-	const defaultSorted = data.slice();
-	data = defaultSorted;
 	document.querySelector("#tri").addEventListener("change", function () {
+		let data = getMediasLS(key);
+		const defaultSorted = data.slice();
+		data = defaultSorted;
 		const container = document.getElementById("medias_list");
 		container.innerHTML = "";
 		if (this.value === "default") {
@@ -92,6 +98,7 @@ function sortedBy(data) {
 			sliderWrapper.appendChild(Slider.createMediaSlider());
 		});
 		slider();
+		displaylikes(key);
 		return data;
 	});
 }
