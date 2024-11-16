@@ -39,9 +39,6 @@ class App {
 			);
 			saveMediasLS(photographerMedias);
 			const mediasLS = getMediasLS(id);
-			// console.log(photographerMedias);
-			// console.log("-----------");
-			// console.log(mediasLS);
 			mediasLS
 				.map((media) => new MediasFactory(media))
 				.forEach((media) => {
@@ -81,7 +78,6 @@ class App {
 			displaySumLikes(mediasLS);
 			displaylikes(id);
 			sortedBy(id);
-			//saveMediasLS(photographerMedias);
 			submitForm();
 		}
 	}
