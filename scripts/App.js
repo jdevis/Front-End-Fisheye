@@ -79,6 +79,7 @@ class App {
 			displaylikes(id);
 			sortedBy(id);
 			submitForm();
+			slider();
 		}
 	}
 }

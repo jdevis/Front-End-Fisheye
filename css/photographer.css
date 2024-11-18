@@ -6,6 +6,9 @@ i.fa-heart {
 .logo {
 	margin-left: 0;
 }
+.no-scroll {
+	overflow: hidden;
+}
 .photograph_header {
 	background-color: var(--second-secondary-color);
 	margin: 0 auto 1em;
