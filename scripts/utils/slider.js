@@ -16,6 +16,7 @@ function displayModal(id) {
 	mainWrapper.setAttribute("aria-hidden", "true");
 	modal.style.display = "block";
 	modal.setAttribute("aria-hidden", "false");
+	modal.focus();
 	document.body.classList.add("no-scroll");
 }
 

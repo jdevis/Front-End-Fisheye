@@ -22,7 +22,7 @@
 		</header>
 		<main id="main" aria-hidden="false">
 			<div class="photograph_header"></div>
-			<div class="filter" role="filter">
+			<div class="filter" aria-describedby="sort">
 				<label for="tri" id="sort">Trier par : </label>
 				<select name="tri" id="tri">
 					<option value="default">Défaut</option>
@@ -33,21 +33,25 @@
 			</div>
 			<section class="photograph_medias" id="medias_list"></section>
 			<div class="sum_likes">
-				<span class="likes" id="sumLikes"
-					><i class="fa-solid fa-heart"></i
-				></span>
+				<span class="likes" id="sumLikes">
+					<i class="fa-solid fa-heart"></i>
+				</span>
 				<span class="price" id="dayPrice"></span>
 			</div>
 		</main>
-		<div class="carousel" id="lightbox" aria-hidden="true" role="slider">
-			<button class="btn" id="close" aria-label="Close dialog">X</button>
-			<button class="btn" id="prev" aria-label="Previous image">
-				&#10096;
-			</button>
-			<button class="btn" id="next" aria-label="Next image">
-				&#10097;
-			</button>
-			<ul id="medias_slider"></ul>
+		<div id="lightbox" aria-hidden="true" role="slider">
+			<div class="carousel">
+				<button class="btn" id="close" aria-label="Close dialog">
+					X
+				</button>
+				<button class="btn" id="prev" aria-label="Previous image">
+					&#10096;
+				</button>
+				<button class="btn" id="next" aria-label="Next image">
+					&#10097;
+				</button>
+				<ul id="medias_slider"></ul>
+			</div>
 		</div>
 		<div
 			class="contact"
@@ -60,14 +64,14 @@
 				<header>
 					<h2 id="modalTitle">Contactez-moi</h2>
 					<button
-						class="contact_button"
+						class="contact_button btn_close"
 						id="closeModal"
 						aria-label="Close dialog"
 					>
 						X
 					</button>
 				</header>
-				<form action="" role="formulaire de contact" id="contactForm">
+				<form action="" role="form" id="contactForm">
 					<div>
 						<label for="firstName">Prénom</label>
 						<input type="text" id="firstName" name="firstName" />

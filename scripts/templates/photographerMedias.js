@@ -5,7 +5,6 @@ class MediaCard {
 
 	createMediaCard() {
 		const $wrapper = document.createElement("article");
-
 		const mediaCard = `
             <a href="#" title="Ouverture du carrousel" class="open" aria-label="image closeup view">
                 ${this._media.picture}
