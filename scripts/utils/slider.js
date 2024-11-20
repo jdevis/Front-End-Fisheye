@@ -9,22 +9,39 @@
 	40	ArrowDown
 */
 
+function listenKeyboard(el) {
+	document.addEventListener("keydown", (event) => {
+		console.log("touche : " + event.key);
+		if (event.key === "Tab") {
+			el.focus();
+		}
+		if (event.key === "Escape") {
+			closeModal(el);
+		}
+		if (event.key === "Enter") {
+			console.log("touche entrer");
+		}
+	});
+}
+
 const mainWrapper = document.getElementById("main");
 
 function displayModal(id) {
 	const modal = document.getElementById(id);
-	mainWrapper.setAttribute("aria-hidden", "true");
+	///mainWrapper.setAttribute("aria-hidden", "true");
 	modal.style.display = "block";
-	modal.setAttribute("aria-hidden", "false");
-	modal.focus();
+	//modal.setAttribute("aria-hidden", "false");
+	listenKeyboard(modal);
+	console.log("focus sur la modal");
 	document.body.classList.add("no-scroll");
 }
 
 function closeModal(id) {
 	const modal = document.getElementById(id);
-	modal.setAttribute("aria-hidden", "true");
+	listenKeyboard(modal);
+	//modal.setAttribute("aria-hidden", "true");
 	modal.style.display = "none";
-	mainWrapper.setAttribute("aria-hidden", "false");
+	//mainWrapper.setAttribute("aria-hidden", "false");
 	document.body.classList.remove("no-scroll");
 }
 
@@ -37,6 +54,7 @@ function slider() {
 			displayModal("lightbox");
 			mediaIndex = [...medias].indexOf(media);
 			slides[mediaIndex].classList.add("active");
+			slides[mediaIndex].setAttribute("tabindex", "1");
 			buttons.forEach((button) => {
 				button.addEventListener("click", (e) => {
 					if (e.target.id === "close") closeModal("lightbox");
@@ -47,14 +65,18 @@ function slider() {
 					if (newIndex < 0) newIndex = [...slides].length - 1;
 					if (newIndex >= [...slides].length) newIndex = 0;
 					slides[newIndex].classList.add("active");
+					slides[newIndex].setAttribute("tabindex", "1");
 					slideActive.classList.remove("active");
+					slideActive.setAttribute("tabindex", "-1");
 				});
 			});
 		});
 	});
 }
 function submitForm() {
-	document.getElementById("contactForm").addEventListener("submit", (e) => {
+	const formWrapper = document.getElementById("contactForm");
+	listenKeyboard(formWrapper);
+	formWrapper.addEventListener("submit", (e) => {
 		e.preventDefault();
 		const firstName = document.getElementById("firstName");
 		const lastName = document.getElementById("lastName");
@@ -65,5 +87,6 @@ function submitForm() {
 		console.log("Nom : " + lastName.value);
 		console.log("Email : " + email.value);
 		console.log("Message : " + message.value);
+		closeModal("contactModal");
 	});
 }

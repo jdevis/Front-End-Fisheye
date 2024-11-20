@@ -240,6 +240,11 @@ button.btn_close:hover {
 	outline: none;
 	color: var(--first-main-color);
 }
+button[type="submit"]:hover,
+button[type="submit"]:focus {
+	background: var(--first-main-color);
+	color: var(--second-main-color);
+}
 form {
 	display: flex;
 	width: 100%;

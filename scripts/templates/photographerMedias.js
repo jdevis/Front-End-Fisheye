@@ -6,12 +6,12 @@ class MediaCard {
 	createMediaCard() {
 		const $wrapper = document.createElement("article");
 		const mediaCard = `
-            <a href="#" title="Ouverture du carrousel" class="open" aria-label="image closeup view">
+            <a href="#" title="Ouverture du carrousel" class="open">
                 ${this._media.picture}
             </a>
             <p class="title">${this._media.title}
-                <span class="likes">
-                    ${this._media.likes}<i class="fa-solid fa-heart" id="${this._media.id}"></i>
+                <span class="likes" aria-label="nombre de likes">
+                    ${this._media.likes}<i class="fa-solid fa-heart" id="${this._media.id}" aria-label="ajouter un like" role="button"></i>
                 </span>
             </p>    
         `;
@@ -23,6 +23,7 @@ class MediaCard {
 	createMediaSlider() {
 		const $wrapper = document.createElement("li");
 		$wrapper.classList.add("slide");
+		$wrapper.setAttribute("tabindex", "-1");
 
 		const mediaSlide = `${this._media.picture}<p class="title">${this._media.title}</p>`;
 		$wrapper.innerHTML = mediaSlide;
