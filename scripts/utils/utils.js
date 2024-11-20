@@ -14,11 +14,11 @@ function displaySumLikes(data) {
 }
 
 function displaylikes(id) {
-	const likes = document.querySelectorAll(".photograph_medias i.fa-heart");
+	const likes = document.querySelectorAll(".photograph_medias button");
 	likes.forEach((like) => {
 		like.addEventListener("click", (e) => {
 			const newLikes = addLike(e.target.id, id);
-			e.target.parentNode.innerHTML = `${newLikes}<i class="fa-solid fa-heart" id="${e.target.id}"></i>`;
+			e.target.parentNode.parentNode.innerHTML = `${newLikes}<button class="no-btn added" aria-label="ajouter un like"><i class="fa-solid fa-heart" id="${e.target.id}"></i></button>`;
 		});
 	});
 }

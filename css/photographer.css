@@ -1,9 +1,16 @@
 @import url("style.css");
 i.fa-heart {
-	margin-left: 5px;
 	cursor: pointer;
 }
 i.fa-heart:hover {
+	color: var(--second-main-color);
+}
+button.no-btn {
+	border: none;
+	background: none;
+	color: var(--first-main-color);
+}
+button.no-btn.added {
 	color: var(--second-main-color);
 }
 .logo {

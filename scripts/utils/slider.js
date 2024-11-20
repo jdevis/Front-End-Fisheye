@@ -9,17 +9,22 @@
 	40	ArrowDown
 */
 
-function listenKeyboard(el) {
+function listenKeyboard(id) {
+	const modalWrapper = document.getElementById(id);
+	const elFocusable = modalWrapper.querySelectorAll(
+		"[tabindex], a, button, input, textarea, select"
+	);
+	let firstFocus = elFocusable[0];
+	let lastFocus = elFocusable[elFocusable.length - 1];
+
 	document.addEventListener("keydown", (event) => {
-		console.log("touche : " + event.key);
+		console.log(`touche  : ${event.key}`);
 		if (event.key === "Tab") {
-			el.focus();
+			elFocusable.focus();
 		}
 		if (event.key === "Escape") {
-			closeModal(el);
-		}
-		if (event.key === "Enter") {
-			console.log("touche entrer");
+			closeModal(id);
+			elFocusable.blur();
 		}
 	});
 }
@@ -28,20 +33,20 @@ const mainWrapper = document.getElementById("main");
 
 function displayModal(id) {
 	const modal = document.getElementById(id);
-	///mainWrapper.setAttribute("aria-hidden", "true");
+	modal.focus();
+	mainWrapper.setAttribute("aria-hidden", "true");
 	modal.style.display = "block";
-	//modal.setAttribute("aria-hidden", "false");
-	listenKeyboard(modal);
-	console.log("focus sur la modal");
+	modal.setAttribute("aria-hidden", "false");
+	console.log(document.activeElement);
 	document.body.classList.add("no-scroll");
 }
 
 function closeModal(id) {
 	const modal = document.getElementById(id);
-	listenKeyboard(modal);
-	//modal.setAttribute("aria-hidden", "true");
+	modal.blur();
 	modal.style.display = "none";
-	//mainWrapper.setAttribute("aria-hidden", "false");
+	modal.setAttribute("aria-hidden", "true");
+	mainWrapper.setAttribute("aria-hidden", "false");
 	document.body.classList.remove("no-scroll");
 }
 
@@ -52,7 +57,7 @@ function slider() {
 	medias.forEach((media) => {
 		media.addEventListener("click", () => {
 			displayModal("lightbox");
-			mediaIndex = [...medias].indexOf(media);
+			let mediaIndex = [...medias].indexOf(media);
 			slides[mediaIndex].classList.add("active");
 			slides[mediaIndex].setAttribute("tabindex", "1");
 			buttons.forEach((button) => {
@@ -61,7 +66,8 @@ function slider() {
 					const calcMoveIndex = e.target.id === "next" ? 1 : -1;
 					const slideActive = document.querySelector(".active");
 
-					newIndex = calcMoveIndex + [...slides].indexOf(slideActive);
+					let newIndex =
+						calcMoveIndex + [...slides].indexOf(slideActive);
 					if (newIndex < 0) newIndex = [...slides].length - 1;
 					if (newIndex >= [...slides].length) newIndex = 0;
 					slides[newIndex].classList.add("active");
@@ -75,7 +81,6 @@ function slider() {
 }
 function submitForm() {
 	const formWrapper = document.getElementById("contactForm");
-	listenKeyboard(formWrapper);
 	formWrapper.addEventListener("submit", (e) => {
 		e.preventDefault();
 		const firstName = document.getElementById("firstName");
@@ -88,5 +93,15 @@ function submitForm() {
 		console.log("Email : " + email.value);
 		console.log("Message : " + message.value);
 		closeModal("contactModal");
+	});
+}
+function testBouh() {
+	const buttons = document.querySelectorAll(".intro button");
+	console.log(buttons);
+	buttons.forEach((button) => {
+		button.addEventListener("click", (e) => {
+			if (e.target.id === "closeContactModal") closeModal("contactModal");
+			if (e.target.id === "openModal") displayModal("contactModal");
+		});
 	});
 }

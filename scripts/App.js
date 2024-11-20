@@ -59,22 +59,13 @@ class App {
 				.map((photographer) => new Photographer(photographer))
 				.forEach((photographer) => {
 					const Template = new PhotographerIntro(photographer);
+					this.$introWrapper.innerHTML = "";
 					this.$introWrapper.appendChild(
 						Template.createPhotographerIntro()
 					);
 					Template.displayPhotographerName();
-					const buttons = document.querySelectorAll(
-						".contact_button"
-					);
-					buttons.forEach((button) => {
-						button.addEventListener("click", (e) => {
-							if (e.target.id === "closeModal")
-								closeModal("contactModal");
-							if (e.target.id === "openModal")
-								displayModal("contactModal");
-						});
-					});
 				});
+
 			displaySumLikes(mediasLS);
 			displaylikes(id);
 			sortedBy(id);

@@ -11,7 +11,7 @@ class MediaCard {
             </a>
             <p class="title">${this._media.title}
                 <span class="likes" aria-label="nombre de likes">
-                    ${this._media.likes}<i class="fa-solid fa-heart" id="${this._media.id}" aria-label="ajouter un like" role="button"></i>
+                    ${this._media.likes}<button class="no-btn" aria-label="ajouter un like"><i class="fa-solid fa-heart" id="${this._media.id}"></i></button>
                 </span>
             </p>    
         `;

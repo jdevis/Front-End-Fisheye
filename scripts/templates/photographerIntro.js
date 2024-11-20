@@ -19,7 +19,6 @@ class PhotographerIntro {
                 <img src="${this._photographer.picture}" alt="portrait de ${this._photographer.name}">
             </div>
         `;
-
 		$wrapper.innerHTML = photographerIntro;
 		return $wrapper;
 	}
