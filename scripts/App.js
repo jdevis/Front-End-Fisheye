@@ -33,6 +33,23 @@ class App {
 				});
 		} else if (id) {
 			// id exist so we're on photographer detail page
+			const intro = await this.photographersApi.getPhotographers();
+			const photographerIntro = intro.filter(
+				(element) => element.id === id
+			);
+			photographerIntro
+				.map((photographer) => new Photographer(photographer))
+				.forEach((photographer) => {
+					const Template = new PhotographerIntro(photographer);
+					this.$introWrapper.innerHTML = "";
+					this.$introWrapper.appendChild(
+						Template.createPhotographerIntro()
+					);
+					Template.displayPhotographerName();
+				});
+			const dayPrice = getPhotographerPrice(photographerIntro);
+			this.$dayPriceWrapper.innerHTML = dayPrice;
+
 			const medias = await this.mediasApi.getMedias();
 			const photographerMedias = medias.filter(
 				(element) => element.photographerId === id
@@ -48,29 +65,12 @@ class App {
 					this.$sliderWrapper.appendChild(Slider.createMediaSlider());
 				});
 
-			const intro = await this.photographersApi.getPhotographers();
-			const photographerIntro = intro.filter(
-				(element) => element.id === id
-			);
-			const dayPrice = getPhotographerPrice(photographerIntro);
-			this.$dayPriceWrapper.innerHTML = dayPrice;
-
-			photographerIntro
-				.map((photographer) => new Photographer(photographer))
-				.forEach((photographer) => {
-					const Template = new PhotographerIntro(photographer);
-					this.$introWrapper.innerHTML = "";
-					this.$introWrapper.appendChild(
-						Template.createPhotographerIntro()
-					);
-					Template.displayPhotographerName();
-				});
-
+			sortedBy(id);
 			displaySumLikes(mediasLS);
 			displaylikes(id);
-			sortedBy(id);
 			submitForm();
 			slider();
+			toggleModals();
 		}
 	}
 }

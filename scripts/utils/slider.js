@@ -33,20 +33,20 @@ const mainWrapper = document.getElementById("main");
 
 function displayModal(id) {
 	const modal = document.getElementById(id);
-	modal.focus();
-	mainWrapper.setAttribute("aria-hidden", "true");
 	modal.style.display = "block";
 	modal.setAttribute("aria-hidden", "false");
+	mainWrapper.setAttribute("aria-hidden", "true");
+	modal.focus();
 	console.log(document.activeElement);
 	document.body.classList.add("no-scroll");
 }
 
 function closeModal(id) {
 	const modal = document.getElementById(id);
-	modal.blur();
 	modal.style.display = "none";
 	modal.setAttribute("aria-hidden", "true");
 	mainWrapper.setAttribute("aria-hidden", "false");
+	modal.blur();
 	document.body.classList.remove("no-scroll");
 }
 
@@ -95,13 +95,23 @@ function submitForm() {
 		closeModal("contactModal");
 	});
 }
-function testBouh() {
-	const buttons = document.querySelectorAll(".intro button");
-	console.log(buttons);
-	buttons.forEach((button) => {
-		button.addEventListener("click", (e) => {
-			if (e.target.id === "closeContactModal") closeModal("contactModal");
-			if (e.target.id === "openModal") displayModal("contactModal");
-		});
+function toggleModals() {
+	const openContactModal = document.getElementById("openModal");
+	const closeContactModal = document.getElementById("closeContactModal");
+	openContactModal.addEventListener("click", (e) => {
+		displayModal("contactModal");
+	});
+	closeContactModal.addEventListener("click", (e) => {
+		closeModal("contactModal");
+	});
+	openContactModal.addEventListener("keydown", (event) => {
+		if (event.key === "Enter") {
+			displayModal("contactModal");
+		}
+	});
+	closeContactModal.addEventListener("keydown", (event) => {
+		if (event.key === "Enter") {
+			closeModal("contactModal");
+		}
 	});
 }
