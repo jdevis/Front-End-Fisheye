@@ -37,7 +37,6 @@ function displayModal(id) {
 	modal.setAttribute("aria-hidden", "false");
 	mainWrapper.setAttribute("aria-hidden", "true");
 	modal.focus();
-	console.log(document.activeElement);
 	document.body.classList.add("no-scroll");
 }
 
@@ -50,35 +49,86 @@ function closeModal(id) {
 	document.body.classList.remove("no-scroll");
 }
 
-function slider() {
+function toggleModals() {
+	const openContactModal = document.getElementById("openModal");
+	const closeContactModal = document.getElementById("closeContactModal");
 	const buttons = document.querySelectorAll(".btn");
-	const slides = document.querySelectorAll(".slide");
 	const medias = document.querySelectorAll(".open");
+
+	openContactModal.addEventListener("click", () => {
+		displayModal("contactModal");
+	});
+	closeContactModal.addEventListener("click", () => {
+		closeModal("contactModal");
+	});
+	openContactModal.addEventListener("keydown", (event) => {
+		if (event.key === "Enter") {
+			displayModal("contactModal");
+		}
+	});
+	closeContactModal.addEventListener("keydown", (event) => {
+		if (event.key === "Enter") {
+			closeModal("contactModal");
+		}
+	});
 	medias.forEach((media) => {
 		media.addEventListener("click", () => {
+			let i = [...medias].indexOf(media);
+			console.log(i);
+			slider(i, "");
 			displayModal("lightbox");
-			let mediaIndex = [...medias].indexOf(media);
-			slides[mediaIndex].classList.add("active");
-			slides[mediaIndex].setAttribute("tabindex", "1");
-			buttons.forEach((button) => {
-				button.addEventListener("click", (e) => {
-					if (e.target.id === "close") closeModal("lightbox");
-					const calcMoveIndex = e.target.id === "next" ? 1 : -1;
-					const slideActive = document.querySelector(".active");
-
-					let newIndex =
-						calcMoveIndex + [...slides].indexOf(slideActive);
-					if (newIndex < 0) newIndex = [...slides].length - 1;
-					if (newIndex >= [...slides].length) newIndex = 0;
-					slides[newIndex].classList.add("active");
-					slides[newIndex].setAttribute("tabindex", "1");
-					slideActive.classList.remove("active");
-					slideActive.setAttribute("tabindex", "-1");
-				});
-			});
+		});
+		media.addEventListener("keydown", (event) => {
+			console.log("touche : " + event.key);
+			let i = [...medias].indexOf(media);
+			if (event.key === "Enter") {
+				slider(i, "");
+				displayModal("lightbox");
+			}
+		});
+	});
+	buttons.forEach((button) => {
+		button.addEventListener("click", (e) => slider("", e));
+		button.addEventListener("keydown", (e) => {
+			console.log("touche : " + e.key);
+			if (e.key === "Enter") {
+				slider("", e);
+			}
 		});
 	});
 }
+
+function slider(i, e) {
+	const slides = document.querySelectorAll(".slide");
+	console.log("i vaut: " + i);
+	console.log("e vaut: " + e.target);
+
+	if (e.target != undefined) {
+		console.log("je suis dans e.");
+		const calcMoveIndex = e.target.id === "next" ? 1 : -1;
+		const slideActive = document.querySelector(".active");
+		if (e.target.id === "close") {
+			slideActive.classList.remove("active");
+			slideActive.setAttribute("tabindex", "-1");
+			closeModal("lightbox");
+		} else {
+			let newIndex = calcMoveIndex + [...slides].indexOf(slideActive);
+			if (newIndex < 0) newIndex = [...slides].length - 1;
+			if (newIndex >= [...slides].length) newIndex = 0;
+			slides[newIndex].classList.add("active");
+			slides[newIndex].setAttribute("tabindex", "1");
+			slideActive.classList.remove("active");
+			slideActive.setAttribute("tabindex", "-1");
+		}
+	} else {
+		console.log("je suis dans i.");
+		console.log(slides);
+		let mediaIndex = i;
+		slides[mediaIndex].classList.add("active");
+		slides[mediaIndex].setAttribute("tabindex", "1");
+	}
+}
+
 function submitForm() {
 	const formWrapper = document.getElementById("contactForm");
 	formWrapper.addEventListener("submit", (e) => {
@@ -93,25 +143,5 @@ function submitForm() {
 		console.log("Email : " + email.value);
 		console.log("Message : " + message.value);
 		closeModal("contactModal");
-	});
-}
-function toggleModals() {
-	const openContactModal = document.getElementById("openModal");
-	const closeContactModal = document.getElementById("closeContactModal");
-	openContactModal.addEventListener("click", (e) => {
-		displayModal("contactModal");
-	});
-	closeContactModal.addEventListener("click", (e) => {
-		closeModal("contactModal");
-	});
-	openContactModal.addEventListener("keydown", (event) => {
-		if (event.key === "Enter") {
-			displayModal("contactModal");
-		}
-	});
-	closeContactModal.addEventListener("keydown", (event) => {
-		if (event.key === "Enter") {
-			closeModal("contactModal");
-		}
 	});
 }
