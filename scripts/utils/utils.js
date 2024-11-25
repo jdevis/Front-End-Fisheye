@@ -14,13 +14,25 @@ function displaySumLikes(data) {
 }
 
 function displaylikes(id) {
-	const likes = document.querySelectorAll(".photograph_medias button");
+	const likes = document.querySelectorAll(".photograph_medias i");
 	likes.forEach((like) => {
 		like.addEventListener("click", (e) => {
-			const newLikes = addLike(e.target.id, id);
+			console.log("je clique like");
+			const newLikes = addLike(e, id);
 			e.target.parentNode.parentNode.innerHTML = `${newLikes}<button class="no-btn added" aria-label="ajouter un like"><i class="fa-solid fa-heart" id="${e.target.id}"></i></button>`;
 		});
 	});
+}
+function addLike(e, key) {
+	let medias = getMediasLS(key);
+	let foundMedia = medias.find((m) => m.id == e.target.id);
+	let likes = foundMedia.likes;
+	console.log(e.target.parentNode.classList);
+	likes++;
+	foundMedia.likes = likes;
+	saveMediasLS(medias);
+	displaySumLikes(medias);
+	return likes;
 }
 
 // localStorage for medias
@@ -40,17 +52,6 @@ function saveMediasLS(data) {
 function getMediasLS(key) {
 	let medias = localStorage.getItem(key);
 	return JSON.parse(medias);
-}
-
-function addLike(id, key) {
-	let medias = getMediasLS(key);
-	let foundMedia = medias.find((m) => m.id == id);
-	let likes = foundMedia.likes;
-	likes++;
-	foundMedia.likes = likes;
-	saveMediasLS(medias);
-	displaySumLikes(medias);
-	return likes;
 }
 
 function getPhotographerPrice(data) {
@@ -97,8 +98,8 @@ function sortedBy(key) {
 			const Slider = new MediaCard(media);
 			sliderWrapper.appendChild(Slider.createMediaSlider());
 		});
-		slider();
 		displaylikes(key);
+		slider();
 		return data;
 	});
 }

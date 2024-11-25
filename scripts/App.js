@@ -68,7 +68,7 @@ class App {
 			sortedBy(id);
 			displaySumLikes(mediasLS);
 			displaylikes(id);
-			submitForm();
+			slider();
 			toggleModals();
 		}
 	}
