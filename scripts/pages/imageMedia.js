@@ -7,6 +7,7 @@ class ImageMedia {
 		this._price = media.price;
 		this._title = media.title;
 		this._picture = media.image;
+		this._class = media.class;
 	}
 
 	get picture() {
@@ -31,5 +32,8 @@ class ImageMedia {
 	}
 	get title() {
 		return this._title;
+	}
+	get class() {
+		return this._class;
 	}
 }

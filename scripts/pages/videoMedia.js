@@ -7,6 +7,7 @@ class VideoMedia {
 		this._price = media.price;
 		this._title = media.title;
 		this._picture = media.video;
+		this._class = media.class;
 	}
 
 	get picture() {
@@ -34,5 +35,8 @@ class VideoMedia {
 	}
 	get title() {
 		return this._title;
+	}
+	get class() {
+		return this._class;
 	}
 }

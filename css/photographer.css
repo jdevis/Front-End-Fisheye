@@ -5,14 +5,17 @@ i.fa-heart {
 i.fa-heart:hover {
 	color: var(--second-main-color);
 }
-button.no-btn {
+i.fa-heart.added {
+	color: var(--second-main-color);
+}
+/* button.no-btn {
 	border: none;
 	background: none;
 	color: var(--first-main-color);
 }
 button.no-btn.added {
 	color: var(--second-main-color);
-}
+} */
 .logo {
 	margin-left: 0;
 }
@@ -98,12 +101,16 @@ button.no-btn.added {
 	border-radius: 0.25em;
 }
 .title {
+	float: left;
+}
+.title,
+.likes {
 	color: var(--first-main-color);
 	font-size: 18px;
 	margin: 0;
 	padding: 0.5em 0;
 }
-.title .likes {
+.likes {
 	float: right;
 }
 .contact_button {

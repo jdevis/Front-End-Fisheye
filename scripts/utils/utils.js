@@ -17,22 +17,29 @@ function displaylikes(id) {
 	const likes = document.querySelectorAll(".photograph_medias i");
 	likes.forEach((like) => {
 		like.addEventListener("click", (e) => {
-			console.log("je clique like");
-			const newLikes = addLike(e, id);
-			e.target.parentNode.parentNode.innerHTML = `${newLikes}<button class="no-btn added" aria-label="ajouter un like"><i class="fa-solid fa-heart" id="${e.target.id}"></i></button>`;
+			let medias = getMediasLS(id);
+			let foundMedia = medias.find((m) => m.id == e.target.id);
+			let newLikes = foundMedia.likes;
+			if (!e.target.classList.contains("added")) {
+				newLikes++;
+				e.target.classList.add("added");
+				e.target.setAttribute(
+					"aria-label",
+					"Like ajouté, cliquer pour le retirer"
+				);
+				foundMedia.class = "added";
+			} else {
+				newLikes--;
+				e.target.classList.remove("added");
+				e.target.setAttribute("aria-label", "ajouter un like");
+				foundMedia.class = "";
+			}
+			e.target.previousElementSibling.textContent = `${newLikes} `;
+			foundMedia.likes = newLikes;
+			saveMediasLS(medias);
+			displaySumLikes(medias);
 		});
 	});
-}
-function addLike(e, key) {
-	let medias = getMediasLS(key);
-	let foundMedia = medias.find((m) => m.id == e.target.id);
-	let likes = foundMedia.likes;
-	console.log(e.target.parentNode.classList);
-	likes++;
-	foundMedia.likes = likes;
-	saveMediasLS(medias);
-	displaySumLikes(medias);
-	return likes;
 }
 
 // localStorage for medias

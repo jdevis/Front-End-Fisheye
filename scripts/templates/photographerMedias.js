@@ -5,15 +5,22 @@ class MediaCard {
 
 	createMediaCard() {
 		const $wrapper = document.createElement("article");
+		const likeAdded = this._media.class;
+		let likeIcon;
+		if (likeAdded == "added") {
+			likeIcon = `<i class="fa-solid fa-heart added" id="${this._media.id}" role="button" aria-label="Like ajouté, cliquer pour le retirer"></i>`;
+		} else {
+			likeIcon = `<i class="fa-solid fa-heart " id="${this._media.id}" role="button" aria-label="ajouter un like"></i>`;
+		}
 		const mediaCard = `
             <a href="#" title="Ouverture du carrousel" class="open">
                 ${this._media.picture}
             </a>
-            <p class="title">${this._media.title}
-                <span class="likes" aria-label="nombre de likes">
-                    ${this._media.likes}<button class="no-btn" aria-label="ajouter un like"><i class="fa-solid fa-heart" id="${this._media.id}"></i></button>
-                </span>
-            </p>    
+            <p class="title">${this._media.title}</p>
+			<p class="likes" >
+                <span class="cible" aria-label="nombre de likes">${this._media.likes} </span>
+				${likeIcon}
+             </p>   
         `;
 
 		$wrapper.innerHTML = mediaCard;
