@@ -14,7 +14,7 @@ class PhotographerIntro {
                 ${this._photographer.country}</p>
                 <p>${this._photographer.tagline}</p>
             </div>
-            <buttton class="contact_button" aria-label="Open contact form" id="openModal">Contactez-moi</buttton>
+            <button class="contact_button" aria-label="Open contact form" id="openModal">Contactez-moi</button>
             <div class="portrait">
                 <img src="${this._photographer.picture}" alt="portrait de ${this._photographer.name}">
             </div>

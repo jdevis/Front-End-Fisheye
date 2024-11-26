@@ -9,30 +9,43 @@
 	40	ArrowDown
 */
 
-const mainWrapper = document.getElementById("main");
-
-function trapFocus(id) {
-	const modalWrapper = document.getElementById(id);
-	const elFocusable = modalWrapper.querySelectorAll(
-		"[tabindex], a, button, input, textarea, select"
-	);
-}
-
 function displayModal(id) {
 	const modal = document.getElementById(id);
+	let focusBeforeModal = document.activeElement;
+	const elFocusable = modal.querySelectorAll(
+		"[tabindex], a, button, input, textarea, select"
+	);
+	const firstElement = elFocusable[0];
+	const lastElement = elFocusable[elFocusable.length - 1];
+	console.log(elFocusable);
+	modal.addEventListener("keydown", trapKey);
 	modal.style.display = "block";
-	modal.setAttribute("aria-hidden", "false");
-	mainWrapper.setAttribute("aria-hidden", "true");
 	document.body.classList.add("no-scroll");
-	//trapFocus(id);
+	firstElement.focus();
+	function trapKey(e) {
+		if (e.key === "Tab") {
+			if (e.shiftKey) {
+				if (document.activeElement === firstElement) {
+					e.preventDefault();
+					lastElement.focus();
+				}
+			} else {
+				if (document.activeElement === lastElement) {
+					e.preventDefault();
+					firstElement.focus();
+				}
+			}
+		}
+		if (e.key === "Escape") {
+			modal.style.display = "none";
+			document.body.classList.remove("no-scroll");
+			focusBeforeModal.focus();
+		}
+	}
 }
-
 function closeModal(id) {
 	const modal = document.getElementById(id);
 	modal.style.display = "none";
-	modal.setAttribute("aria-hidden", "true");
-	mainWrapper.setAttribute("aria-hidden", "false");
-	//modal.blur();
 	document.body.classList.remove("no-scroll");
 }
 
