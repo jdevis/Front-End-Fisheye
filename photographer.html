@@ -22,14 +22,7 @@
 		</header>
 		<main id="main">
 			<div class="photograph_header" role="banner">
-				<div class="intro">
-					<buttton
-						class="contact_button"
-						aria-label="Open contact form"
-						id="openModal"
-						>Contactez-moi</buttton
-					>
-				</div>
+				<!-- photographer intro  -->
 			</div>
 			<div class="filter" aria-describedby="sort">
 				<label for="tri" id="sort">Trier par : </label>
@@ -40,7 +33,9 @@
 					<option value="title">Titre</option>
 				</select>
 			</div>
-			<section class="photograph_medias" id="medias_list"></section>
+			<section class="photograph_medias" id="medias_list">
+				<!-- medias gallery  -->
+			</section>
 			<div class="sum_likes">
 				<span id="sumLikes">
 					<i class="fa-solid fa-heart"></i>
@@ -49,7 +44,7 @@
 			</div>
 		</main>
 
-		<div id="lightbox" role="dialog" aria-modal="true">
+		<div id="lightbox" role="dialog">
 			<div class="carousel">
 				<button class="btn" id="close" aria-label="Close dialog">
 					X
@@ -63,13 +58,7 @@
 				<ul id="medias_slider" tabindex="0"></ul>
 			</div>
 		</div>
-		<div
-			class="contact"
-			id="contactModal"
-			role="dialog"
-			aria-labelledby="modalTitle"
-			aria-modal="true"
-		>
+		<div class="contact" id="contactModal" role="dialog">
 			<div class="modal">
 				<header>
 					<h2 id="modalTitle">Contactez-moi</h2>
