@@ -8,9 +8,9 @@ class MediaCard {
 		const likeAdded = this._media.class;
 		let likeIcon;
 		if (likeAdded == "added") {
-			likeIcon = `<i class="fa-solid fa-heart added" id="${this._media.id}" role="button" aria-label="Like ajouté, cliquer pour le retirer"></i>`;
+			likeIcon = `<button class="fa-solid fa-heart added" id="${this._media.id}" aria-label="Like ajouté, cliquer pour le retirer"></button>`;
 		} else {
-			likeIcon = `<i class="fa-solid fa-heart " id="${this._media.id}" role="button" aria-label="ajouter un like"></i>`;
+			likeIcon = `<button class="fa-solid fa-heart " id="${this._media.id}" aria-label="ajouter un like"></button>`;
 		}
 		const mediaCard = `
             <a href="#" title="Ouverture du carrousel" class="open">

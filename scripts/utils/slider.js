@@ -67,9 +67,9 @@ function slider() {
 	const slides = document.querySelectorAll(".slide");
 	const medias = document.querySelectorAll(".open");
 	medias.forEach((media) => {
-		media.addEventListener("click", (e) => {
+		media.addEventListener("click", () => {
 			displayModal("lightbox");
-			mediaIndex = [...medias].indexOf(media);
+			let mediaIndex = [...medias].indexOf(media);
 			slides[mediaIndex].classList.add("active");
 			buttons.forEach((button) => {
 				button.addEventListener("click", (e) => {
@@ -79,7 +79,7 @@ function slider() {
 						slideActive.classList.remove("active");
 						closeModal("lightbox");
 					} else {
-						newIndex =
+						let newIndex =
 							calcMoveIndex + [...slides].indexOf(slideActive);
 						if (newIndex < 0) newIndex = [...slides].length - 1;
 						if (newIndex >= [...slides].length) newIndex = 0;

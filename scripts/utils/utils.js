@@ -14,7 +14,7 @@ function displaySumLikes(data) {
 }
 
 function displaylikes(id) {
-	const likes = document.querySelectorAll(".photograph_medias i");
+	const likes = document.querySelectorAll(".photograph_medias button");
 	likes.forEach((like) => {
 		like.addEventListener("click", (e) => {
 			let medias = getMediasLS(id);

@@ -1,21 +1,4 @@
 @import url("style.css");
-i.fa-heart {
-	cursor: pointer;
-}
-i.fa-heart:hover {
-	color: var(--second-main-color);
-}
-i.fa-heart.added {
-	color: var(--second-main-color);
-}
-/* button.no-btn {
-	border: none;
-	background: none;
-	color: var(--first-main-color);
-}
-button.no-btn.added {
-	color: var(--second-main-color);
-} */
 .logo {
 	margin-left: 0;
 }
@@ -100,6 +83,19 @@ button.no-btn.added {
 	object-fit: cover;
 	border-radius: 0.25em;
 }
+.photograph_medias .fa-heart {
+	color: var(--first-main-color);
+	background: none;
+	border: none;
+	cursor: pointer;
+}
+.photograph_medias .fa-heart:hover {
+	color: var(--second-main-color);
+}
+.photograph_medias .fa-heart.added {
+	color: var(--second-main-color);
+}
+
 .title {
 	float: left;
 }
@@ -130,7 +126,6 @@ button.no-btn.added {
 }
 button.contact_button {
 	border: none;
-	outline: none;
 }
 button.contact_button:hover {
 	background-color: var(--first-main-color);
@@ -172,7 +167,6 @@ button.contact_button:hover {
 	position: absolute;
 	background: none;
 	border: none;
-	outline: none;
 	font-size: 2em;
 	color: var(--first-main-color);
 	cursor: pointer;
@@ -235,7 +229,7 @@ button.contact_button:hover {
 }
 
 .modal header h2 {
-	font-size: 50px;
+	font-size: 45px;
 	font-weight: normal;
 	margin: 0;
 	padding-top: 1.5em;
@@ -264,12 +258,12 @@ form {
 	width: 100%;
 	flex-direction: column;
 	align-items: flex-start;
-	padding: 5em 0 2em 0;
+	padding: 4em 0 2em 0;
 }
 
 form label {
 	color: #312e2e;
-	font-size: 30px;
+	font-size: 25px;
 }
 
 form div {
