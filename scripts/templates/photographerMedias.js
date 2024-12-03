@@ -3,32 +3,42 @@ export class MediaCard {
 		this._media = media;
 	}
 
-	createMediaCard() {
-		const $wrapper = document.createElement("article");
+	toggleLikes() {
 		const likeAdded = this._media.class;
-		const videoMedia = this._media.video;
 		let likeIcon;
-		let pictureType;
 		if (likeAdded == "added") {
 			likeIcon = `<button class="fa-solid fa-heart added" id="${this._media.id}" aria-label="Like ajouté, cliquer pour le retirer"></button>`;
 		} else {
 			likeIcon = `<button class="fa-solid fa-heart " id="${this._media.id}" aria-label="ajouter un like"></button>`;
 		}
+		return likeIcon;
+	}
+
+	toggleMedias() {
+		const videoMedia = this._media.video;
+		let mediaType;
 		if (videoMedia) {
-			pictureType = `
+			mediaType = `
                 <video controls="true" alt="${this._media.title}">
                     <source 
                     src="/assets/photographers/${this._media.photographerId}/${this._media.video}" type="video/mp4">
                 </video>
                 `;
 		} else {
-			pictureType = `<img 
+			mediaType = `<img 
 				src="/assets/photographers/${this._media.photographerId}/${this._media.image}" 
 				alt="${this._title}">`;
 		}
+		return mediaType;
+	}
+
+	createMediaCard() {
+		const $wrapper = document.createElement("article");
+		const likeIcon = this.toggleLikes();
+		const mediaType = this.toggleMedias();
 		const mediaCard = `
             <a href="#" title="Ouverture du carrousel" class="open">
-                ${pictureType}
+                ${mediaType}
             </a>
             <p class="title">${this._media.title}</p>
 			<p class="likes" >
@@ -45,8 +55,9 @@ export class MediaCard {
 		const $wrapper = document.createElement("li");
 		$wrapper.classList.add("slide");
 		$wrapper.setAttribute("tabindex", "-1");
+		const mediaType = this.toggleMedias();
 
-		const mediaSlide = `${this._media.picture}<p class="title">${this._media.title}</p>`;
+		const mediaSlide = `${mediaType}<p class="title">${this._media.title}</p>`;
 		$wrapper.innerHTML = mediaSlide;
 		return $wrapper;
 	}

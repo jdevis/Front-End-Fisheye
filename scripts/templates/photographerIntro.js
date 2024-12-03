@@ -16,7 +16,7 @@ export class PhotographerIntro {
             </div>
             <button class="contact_button" aria-label="Open contact form" id="openModal">Contactez-moi</button>
             <div class="portrait">
-                <img src="${this._photographer.picture}" alt="portrait de ${this._photographer.name}">
+                <img src="/assets/photographers/${this._photographer.picture}" alt="portrait de ${this._photographer.name}">
             </div>
         `;
 		$wrapper.innerHTML = photographerIntro;

@@ -11,7 +11,7 @@ export class PhotographerCard {
                 <div class="portrait">
                     <img
                         alt=""
-                        src="${this._photographer.picture}"
+                        src="/assets/photographers/${this._photographer.picture}"
                     />
                 </div>
                 <h2>${this._photographer.name}</h2>

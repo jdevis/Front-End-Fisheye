@@ -13,7 +13,7 @@ export class Photographer {
 		return this._name;
 	}
 	get picture() {
-		return `/assets/photographers/${this._picture}`;
+		return this._picture;
 	}
 	get id() {
 		return this._id;
