@@ -27,7 +27,7 @@ export class MediaCard {
 		} else {
 			mediaType = `<img 
 				src="/assets/photographers/${this._media.photographerId}/${this._media.image}" 
-				alt="${this._title}">`;
+				alt="${this._media.title}">`;
 		}
 		return mediaType;
 	}
