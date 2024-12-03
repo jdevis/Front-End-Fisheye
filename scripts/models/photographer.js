@@ -1,4 +1,4 @@
-class Photographer {
+export class Photographer {
 	constructor(photographers) {
 		this._name = photographers.name;
 		this._picture = photographers.portrait;
@@ -25,7 +25,7 @@ class Photographer {
 		return this._country;
 	}
 	get price() {
-		return `${this._price}€/jour`;
+		return this._price;
 	}
 	get tagline() {
 		return this._tagline;

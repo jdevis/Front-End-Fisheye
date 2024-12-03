@@ -1,4 +1,4 @@
-class PhotographerIntro {
+export class PhotographerIntro {
 	constructor(photographer) {
 		this._photographer = photographer;
 	}
@@ -27,6 +27,13 @@ class PhotographerIntro {
 		const $wrapper = document.querySelector(".modal h2");
 		const photographerContact = `Contactez-moi <br/>${this._photographer.name}`;
 		$wrapper.innerHTML = photographerContact;
+		return $wrapper;
+	}
+
+	displayPhotographerPrice() {
+		const $wrapper = document.getElementById("dayPrice");
+		const photographerPrice = `${this._photographer.price} €/jour`;
+		$wrapper.textContent = photographerPrice;
 		return $wrapper;
 	}
 }

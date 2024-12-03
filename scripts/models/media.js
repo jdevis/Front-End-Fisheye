@@ -1,4 +1,4 @@
-class VideoMedia {
+export class Media {
 	constructor(media) {
 		this._id = media.id;
 		this._photographerId = media.photographerId;
@@ -6,18 +6,11 @@ class VideoMedia {
 		this._date = media.date;
 		this._price = media.price;
 		this._title = media.title;
-		this._picture = media.video;
+		this._video = media.video;
+		this._image = media.image;
 		this._class = media.class;
 	}
 
-	get picture() {
-		return `
-                <video controls="true" alt="${this._title}">
-                    <source 
-                    src="/assets/photographers/${this._photographerId}/${this._picture}" type="video/mp4">
-                </video>
-                `;
-	}
 	get id() {
 		return this._id;
 	}
@@ -31,10 +24,16 @@ class VideoMedia {
 		return this._date;
 	}
 	get price() {
-		return this._price + `€`;
+		return this._price;
 	}
 	get title() {
 		return this._title;
+	}
+	get image() {
+		return this._image;
+	}
+	get video() {
+		return this._video;
 	}
 	get class() {
 		return this._class;

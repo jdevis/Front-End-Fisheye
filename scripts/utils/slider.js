@@ -17,7 +17,6 @@ function displayModal(id) {
 	);
 	const firstElement = elFocusable[0];
 	const lastElement = elFocusable[elFocusable.length - 1];
-	console.log(elFocusable);
 	modal.addEventListener("keydown", trapKey);
 	modal.style.display = "block";
 	document.body.classList.add("no-scroll");
@@ -49,7 +48,7 @@ function closeModal(id) {
 	document.body.classList.remove("no-scroll");
 }
 
-function toggleModals() {
+export function toggleModals() {
 	const openContactModal = document.getElementById("openModal");
 	const closeContactModal = document.getElementById("closeContactModal");
 
@@ -62,7 +61,7 @@ function toggleModals() {
 	});
 }
 
-function slider() {
+export function slider() {
 	const buttons = document.querySelectorAll(".btn");
 	const slides = document.querySelectorAll(".slide");
 	const medias = document.querySelectorAll(".open");

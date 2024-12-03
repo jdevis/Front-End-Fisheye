@@ -1,3 +1,17 @@
+import { PhotographerApi, MediaApi } from "./utils/Api.js";
+import { Media } from "./models/media.js";
+import { Photographer } from "./models/photographer.js";
+import { MediaCard } from "./templates/photographerMedias.js";
+import { PhotographerIntro } from "./templates/photographerIntro.js";
+import { PhotographerCard } from "./templates/photographerCard.js";
+import { slider, toggleModals } from "./utils/slider.js";
+import {
+	displaylikes,
+	sortedBy,
+	saveMediasLS,
+	getMediasLS,
+} from "./utils/utils.js";
+
 class App {
 	constructor() {
 		this.$photographersWrapper = document.querySelector(
@@ -6,7 +20,6 @@ class App {
 		this.$mediasWrapper = document.querySelector(".photograph_medias");
 		this.$introWrapper = document.querySelector(".photograph_header");
 		this.$sliderWrapper = document.getElementById("medias_slider");
-		this.$dayPriceWrapper = document.getElementById("dayPrice");
 
 		this.photographersApi = new PhotographerApi("/data/photographers.json");
 		this.mediasApi = new MediaApi("/data/photographers.json");
@@ -46,9 +59,8 @@ class App {
 						Template.createPhotographerIntro()
 					);
 					Template.displayPhotographerName();
+					Template.displayPhotographerPrice();
 				});
-			const dayPrice = getPhotographerPrice(photographerIntro);
-			this.$dayPriceWrapper.innerHTML = dayPrice;
 
 			const medias = await this.mediasApi.getMedias();
 			const photographerMedias = medias.filter(
@@ -57,7 +69,7 @@ class App {
 			saveMediasLS(photographerMedias);
 			const mediasLS = getMediasLS(id);
 			mediasLS
-				.map((media) => new MediasFactory(media))
+				.map((media) => new Media(media))
 				.forEach((media) => {
 					const Template = new MediaCard(media);
 					this.$mediasWrapper.appendChild(Template.createMediaCard());
@@ -66,7 +78,6 @@ class App {
 				});
 
 			sortedBy(id);
-			displaySumLikes(mediasLS);
 			displaylikes(id);
 			slider();
 			toggleModals();

@@ -1,4 +1,6 @@
-// sum of likes for all photographer medias
+import { Media } from "../models/media.js";
+import { MediaCard } from "../templates/photographerMedias.js";
+import { slider } from "./slider.js";
 function getSumLikes(data) {
 	let sumLikes = 0;
 	data.forEach((element) => {
@@ -6,6 +8,7 @@ function getSumLikes(data) {
 	});
 	return sumLikes + ` <i class="fa-solid fa-heart"></i>`;
 }
+
 function displaySumLikes(data) {
 	const sumLikesWrapper = document.getElementById("sumLikes");
 	const sumLikes = getSumLikes(data);
@@ -13,13 +16,15 @@ function displaySumLikes(data) {
 	sumLikesWrapper.innerHTML = sumLikes;
 }
 
-function displaylikes(id) {
+export function displaylikes(id) {
 	const likes = document.querySelectorAll(".photograph_medias button");
+	let medias = getMediasLS(id); // retrieve medias from local storage
+	displaySumLikes(medias);
 	likes.forEach((like) => {
 		like.addEventListener("click", (e) => {
-			let medias = getMediasLS(id);
 			let foundMedia = medias.find((m) => m.id == e.target.id);
 			let newLikes = foundMedia.likes;
+			// button doesn't have been already clicked
 			if (!e.target.classList.contains("added")) {
 				newLikes++;
 				e.target.classList.add("added");
@@ -35,15 +40,15 @@ function displaylikes(id) {
 				foundMedia.class = "";
 			}
 			e.target.previousElementSibling.textContent = `${newLikes} `;
-			foundMedia.likes = newLikes;
-			saveMediasLS(medias);
+			foundMedia.likes = newLikes; // save number of likes into media
+			saveMediasLS(medias); // save updated media into local storage
 			displaySumLikes(medias);
 		});
 	});
 }
 
 // localStorage for medias
-function saveMediasLS(data) {
+export function saveMediasLS(data) {
 	let photographerId = 0;
 	data.forEach((pId) => {
 		photographerId = pId.photographerId;
@@ -56,20 +61,13 @@ function saveMediasLS(data) {
 	return JSON.stringify(data);
 }
 
-function getMediasLS(key) {
+export function getMediasLS(key) {
 	let medias = localStorage.getItem(key);
 	return JSON.parse(medias);
 }
 
-function getPhotographerPrice(data) {
-	let price = 0;
-	data.forEach((element) => {
-		price = element.price;
-	});
-	return price + `€/jour`;
-}
-
-function sortedBy(key) {
+// sort medias
+export function sortedBy(key) {
 	const mediasWrapper = document.querySelector(".photograph_medias");
 	const sliderWrapper = document.getElementById("medias_slider");
 	document.querySelector("#tri").addEventListener("change", function () {
@@ -99,7 +97,7 @@ function sortedBy(key) {
 		}
 		mediasWrapper.innerHTML = "";
 		sliderWrapper.innerHTML = "";
-		data.map((media) => new MediasFactory(media)).forEach((media) => {
+		data.map((media) => new Media(media)).forEach((media) => {
 			const Template = new MediaCard(media);
 			mediasWrapper.appendChild(Template.createMediaCard());
 			const Slider = new MediaCard(media);
@@ -109,16 +107,4 @@ function sortedBy(key) {
 		slider();
 		return data;
 	});
-}
-
-function setAttributes(el, attrs) {
-	for (var key in attrs) {
-		el.setAttribute(key, attrs[key]);
-	}
-}
-
-function appendChilds(el, attrs) {
-	for (var key in attrs) {
-		el.appendChild(attrs[key]);
-	}
 }

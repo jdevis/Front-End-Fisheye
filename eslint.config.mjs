@@ -6,7 +6,7 @@ export default [
 	{
 		languageOptions: {
 			ecmaVersion: "latest",
-			sourceType: "script",
+			sourceType: "module",
 			globals: globals.browser,
 		},
 	},

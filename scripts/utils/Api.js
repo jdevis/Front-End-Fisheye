@@ -14,7 +14,7 @@ class Api {
 	}
 }
 
-class PhotographerApi extends Api {
+export class PhotographerApi extends Api {
 	/**
 	 *
 	 * @param {string} url
@@ -27,7 +27,7 @@ class PhotographerApi extends Api {
 		return await this.get().then((res) => res.photographers);
 	}
 }
-class MediaApi extends Api {
+export class MediaApi extends Api {
 	/**
 	 *
 	 * @param {string} url
